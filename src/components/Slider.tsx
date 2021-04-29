@@ -4,11 +4,12 @@ import StatusBar from '../styles/statusBar'
 import LottieView from 'lottie-react-native'
 import { Numericals } from '../constants/numerical';
 import AIcon from 'react-native-vector-icons/AntDesign';
-import { View, Text, StyleSheet, Pressable, Animated } from 'react-native'
+import { View, Text, StyleSheet, Pressable, Animated, Image } from 'react-native'
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import Carousel from 'react-native-snap-carousel';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { TextInput, TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
+
 
 const Slider = () => {
 
@@ -17,32 +18,20 @@ const Slider = () => {
         {
             title: "Online Doctor",
             descrption: 'we can search all your need here',
-            url: require("../assets/images/welcome0.json"),
+            url: require("../assets/images/dash.png"),
             index: 1
         },
         {
             title: "Instant Help",
             descrption: 'we can search all your need here',
-            url: require("../assets/images/welcome1.json"),
+            url: require("../assets/images/dash2.png"),
             index: 2
         },
         {
             title: "Easily Accesable",
             descrption: 'Everthing nearby like cook,pg,hotels(oyo bhai)',
-            url: require("../assets/images/welcome2.json"),
+            url: require("../assets/images/dash3.png"),
             index: 3
-        },
-        {
-            title: "Order Medicine",
-            descrption: 'Book Pg in minute',
-            url: require("../assets/images/welcome3.json"),
-            index: 4
-        },
-        {
-            title: "Find more",
-            descrption: 'We have more things,explore here',
-            url: require("../assets/images/welcome4.json"),
-            index: 5
         },
     ];
 
@@ -52,16 +41,16 @@ const Slider = () => {
                 flexDirection: 'column',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                backgroundColor: Colors.PRIMARY
+                paddingHorizontal: DEFAUTL_SPACE,
+                backgroundColor: Colors.PRIMARY,
             }}>
-                <View style={{ width: 200, height: 200 }}>
-                    <LottieView
+                <View style={{ width: 250, height: 200 }}>
+                    <Image
                         source={item.url}
-                        autoPlay
-                        loop
+                        resizeMode="contain"
                     />
                 </View>
-                <View style={{ flexDirection: 'column' }}>
+                <View style={{ flexDirection: 'column', marginVertical: DEFAUTL_SPACE }}>
                     <View style={{ flexDirection: 'column' }}>
                         <Text style={[styles.defaultTxt, { fontSize: FONT_LARGE, color: Colors.WHITE }]}>{item.title}</Text>
                     </View>
@@ -69,8 +58,6 @@ const Slider = () => {
                         <View style={{ width: 10, height: 10, borderRadius: BORDER_RADIUS, backgroundColor: item.index == 1 ? Colors.WHITE : Colors.GREY.SIMPLE }}></View>
                         <View style={{ width: 10, height: 10, borderRadius: BORDER_RADIUS, backgroundColor: item.index == 2 ? Colors.WHITE : Colors.GREY.SIMPLE, marginHorizontal: DEFAUTL_SPACE / 2 }}></View>
                         <View style={{ width: 10, height: 10, borderRadius: BORDER_RADIUS, backgroundColor: item.index == 3 ? Colors.WHITE : Colors.GREY.SIMPLE }}></View>
-                        <View style={{ width: 10, height: 10, borderRadius: BORDER_RADIUS, backgroundColor: item.index == 4 ? Colors.WHITE : Colors.GREY.SIMPLE, marginHorizontal: DEFAUTL_SPACE / 2 }}></View>
-                        <View style={{ width: 10, height: 10, borderRadius: BORDER_RADIUS, backgroundColor: item.index == 5 ? Colors.WHITE : Colors.GREY.SIMPLE }}></View>
                     </View>
                 </View>
             </View>

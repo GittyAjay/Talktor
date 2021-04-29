@@ -4,7 +4,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../pages/Home';
 import Dashboard from '../pages/Dashboard';
 import Splash from '../pages/Splash';
-import AuthDashboard from '../pages/Auth';
 import Otp from '../pages/Otp';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import wishList from '../pages/wishList';
@@ -94,7 +93,6 @@ const HomeNavigator = () => (
     <Navigator headerMode='none'>
         <Screen name='Splash' component={Splash} />
         <Screen name='Dashboard' component={Dashboard} />
-        <Screen name='Auth' component={AuthDashboard} />
         <Screen name='Otp' component={Otp} />
         <Screen name='Home' component={HomeNav} />
     </Navigator>
