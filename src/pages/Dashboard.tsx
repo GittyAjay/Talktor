@@ -9,8 +9,6 @@ import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import Carousel from 'react-native-snap-carousel';
 import Slider from '../components/Slider';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
-import { createKeyboardAwareNavigator } from 'react-navigation';
-import { onChange } from 'react-native-reanimated';
 export default function Dashboard(props: { navigation: { push: Function, navigate: Function } }) {
 
     const { LOGIN_VIEW_HEIGHT, ICON_SIZE, BUTTON_HEIGHT, DEFAUTL_SPACE, FONT_SMALL, FONT_LARGE, FONT_MID, HEIGHT, WIDTH, BORDER_RADIUS_CIRCULAR, INLINE_GAP, BORDER_RADIUS, BORDER_WIDTH } = Numericals();
