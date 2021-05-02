@@ -17,21 +17,27 @@ const Slider = () => {
     const { ICON_SIZE, BUTTON_HEIGHT, DEFAUTL_SPACE, FONT_SMALL, FONT_LARGE, FONT_MID, HEIGHT, WIDTH, BORDER_RADIUS_CIRCULAR, INLINE_GAP, BORDER_RADIUS, BORDER_WIDTH } = Numericals();
     const Slides = [
         {
-            title: "Online Doctor",
-            descrption: 'we can search all your need here',
-            url: require("../assets/images/circularProfile.png"),
+            title: "Looking for your desire Specialist doctor",
+            doctorName: 'Albert Khan',
+            specialization: 'Heart Dieases',
+            clinic: 'Good Health Clinic',
+            url: require("../assets/images/doctor.png"),
             index: 1
         },
         {
             title: "Instant Help",
-            descrption: 'we can search all your need here',
-            url: require("../assets/images/circularProfile.png"),
+            doctorName: 'Sanroz dubey',
+            specialization: 'Sex problem',
+            clinic: 'Kamdev Health Clinic',
+            url: require("../assets/images/doctor1.png"),
             index: 2
         },
         {
             title: "Easily Accesable",
-            descrption: 'Everthing nearby like cook,pg,hotels(oyo bhai)',
-            url: require("../assets/images/circularProfile.png"),
+            doctorName: 'Tokyo kappor',
+            clinic: '24*7 helth checkup',
+            specialization: 'Covid problem',
+            url: require("../assets/images/doctor2.png"),
             index: 3
         },
     ];
@@ -40,35 +46,23 @@ const Slider = () => {
         return (
             <View style={{
                 flex: 1,
-                flexDirection: 'column',
-                justifyContent: 'space-evenly',
-                alignItems: 'flex-start',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'flex-end',
                 height: 170,
-                width: WIDTH - INLINE_GAP,
-                paddingHorizontal: DEFAUTL_SPACE,
                 backgroundColor: Colors.PRIMARY,
-                borderRadius: BORDER_RADIUS_CIRCULAR
+                borderRadius: BORDER_RADIUS,
             }}>
-                <View style={{ flexDirection: 'row' }}>
-                    <View>
-                        <Image
-                            source={item.url}
-                            resizeMode="contain"
-                        />
-                    </View>
-                    <View style={{ flexDirection: 'column', justifyContent: 'flex-start', marginHorizontal: DEFAUTL_SPACE }}>
-                        <Text style={{ fontSize: FONT_LARGE, color: Colors.WHITE, fontWeight: 'bold' }} >Dr. Danielle Borat</Text>
-                        <Text style={{ fontSize: FONT_MID, color: Colors.WHITE }} >Pediatric specialist</Text>
+                <View style={{ flexDirection: 'column', justifyContent: 'space-evenly', marginBottom: 25, paddingLeft: 40 }}>
+                    <Text style={{ fontSize: FONT_MID, color: Colors.WHITE, width: 200 }}>{item.title}</Text>
+                    <View style={{ borderLeftColor: Colors.CYAN, borderLeftWidth: 2, paddingHorizontal: DEFAUTL_SPACE, marginTop: INLINE_GAP, borderStyle: 'solid' }}>
+                        <Text style={{ fontSize: FONT_SMALL, color: Colors.WHITE, width: 200 }}>{item.doctorName}</Text>
+                        <Text style={{ fontSize: FONT_SMALL, color: Colors.WHITE, width: 200 }}>{item.specialization}</Text>
+                        <Text style={{ fontSize: FONT_SMALL, color: Colors.WHITE, width: 200 }}>{item.clinic}</Text>
                     </View>
                 </View>
-                <View style={{ flexDirection: 'row', alignSelf: 'stretch', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <View style={{ flexDirection: 'row' }}>
-                        <EIcon name="location" size={ICON_SIZE} color={Colors.WHITE} />
-                        <Text style={{ fontSize: scale(FONT_SMALL), color: Colors.WHITE }} >Florida,USA</Text>
-                    </View>
-                    <Pressable style={({ pressed }) => [{ opacity: pressed ? 0.9 : 1, backgroundColor: Colors.PRIMARY_SHADE, padding: DEFAUTL_SPACE, borderRadius: BORDER_RADIUS, width: 144, height: 49, justifyContent: 'center', alignItems: 'center' }]}>
-                        <Text style={{ fontSize: scale(FONT_SMALL), color: Colors.WHITE }}>Appointment</Text>
-                    </Pressable>
+                <View >
+                    <Image source={item.url} resizeMode="contain" />
                 </View>
             </View>
         )
@@ -77,12 +71,12 @@ const Slider = () => {
         <View>
             <View>
                 <Carousel
-                    layout={'stack'}
-                    layoutCardOffset={0}
+                    layout={'default'}
                     data={Slides}
+                    firstItem={1}
                     renderItem={renderItem}
-                    sliderWidth={400}
-                    itemWidth={400}
+                    sliderWidth={430}
+                    itemWidth={345}
                 />
             </View>
         </View>
