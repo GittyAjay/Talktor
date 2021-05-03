@@ -27,7 +27,9 @@ export default function Home(props: { navigation: any }) {
                             <Text style={{ fontFamily: "Museo700-Regular", fontSize: moderateScale(FONT_MID) }}>Specialist</Text>
                         </View>
                         <View style={{ flexDirection: 'row' }}>
-                            <AIcon name="search1" color={Colors.BLACK} size={ICON_SIZE} />
+                            <TouchableOpacity onPress={() => props.navigation.push('Search')}>
+                                <AIcon name="search1" color={Colors.BLACK} size={ICON_SIZE} />
+                            </TouchableOpacity>
                             <IIcon name="chatbubble-ellipses-outline" size={ICON_SIZE} style={{ paddingLeft: INLINE_GAP }} />
                         </View>
                     </View>

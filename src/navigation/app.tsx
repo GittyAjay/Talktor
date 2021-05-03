@@ -12,8 +12,9 @@ import AIcon from 'react-native-vector-icons/AntDesign';
 import F5Icon from 'react-native-vector-icons/FontAwesome5';
 import { Numericals } from '../constants/numerical';
 import { Colors } from '../constants/color';
-import Search from '../pages/Doctors';
+import Doctor from '../pages/Doctors';
 import Profile from '../pages/Profile';
+import Search from '../pages/Search';
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
@@ -66,7 +67,7 @@ function HomeNav() {
                     tabBarButton: (props) => <CustomTab label="Doctors" icon={Icons[1]} {...props} />
                 }}
             />
-            <Tab.Screen name="Search" component={Search}
+            <Tab.Screen name="Search" component={Doctor}
                 options={{
                     tabBarButton: (props) => <CustomTab label="Notification" icon={Icons[2]} {...props} />
                 }}
@@ -94,6 +95,7 @@ const HomeNavigator = () => (
         <Screen name='Dashboard' component={Dashboard} />
         <Screen name='Otp' component={Otp} />
         <Screen name='Home' component={HomeNav} />
+        <Screen name='Search' component={Search} />
     </Navigator>
 );
 
