@@ -10,7 +10,7 @@ export const Colors = {
     PRIMARY_SHADE: '#071DEB',
     SECONDARY: '#8155BA',
     TIRTARY: '#603F8B',
-    HOME_BCK: '#F1F2F7',
+    HOME_BCK: '#EBECF0',
     CYAN: '#4DC6EB',
     STAR_COLOR: '#FF8100'
 }

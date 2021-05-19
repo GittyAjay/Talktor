@@ -40,20 +40,20 @@ export default function Home(props: { navigation: any }) {
                         <Text style={{ fontFamily: "Museo700-Regular", fontSize: FONT_LARGE }}>Find your doctors</Text>
                     </View>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{ marginHorizontal: INLINE_GAP }}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 2 * DEFAUTL_SPACE, marginRight: DEFAUTL_SPACE, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS }}>
-                            <FIcon name="heartbeat" color={Colors.RED} size={ICON_SIZE} />
+                        <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 2 * DEFAUTL_SPACE, marginRight: DEFAUTL_SPACE, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS }}>
+                            <FIcon name="heartbeat" color={Colors.RED} size={ICON_SIZE + 10} />
                             <Text style={{ fontSize: moderateScale(FONT_MID), fontWeight: 'bold', marginHorizontal: DEFAUTL_SPACE / 2 }}>Heart</Text>
                         </View>
-                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 2 * DEFAUTL_SPACE, marginRight: DEFAUTL_SPACE, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS }}>
-                            <AIcon name="eye" color={Colors.PRIMARY} size={ICON_SIZE} />
+                        <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 2 * DEFAUTL_SPACE, marginRight: DEFAUTL_SPACE, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS }}>
+                            <AIcon name="eye" color={Colors.PRIMARY} size={ICON_SIZE + 10} />
                             <Text style={{ fontSize: moderateScale(FONT_MID), fontWeight: 'bold', marginHorizontal: DEFAUTL_SPACE / 2 }}>Eye</Text>
                         </View>
-                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 2 * DEFAUTL_SPACE, marginRight: DEFAUTL_SPACE, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS }}>
-                            <MIcon name="head" color={Colors.RED} size={ICON_SIZE} />
+                        <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 2 * DEFAUTL_SPACE, marginRight: DEFAUTL_SPACE, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS }}>
+                            <MIcon name="head" color={Colors.RED} size={ICON_SIZE + 10} />
                             <Text style={{ fontSize: moderateScale(FONT_MID), fontWeight: 'bold', marginHorizontal: DEFAUTL_SPACE / 2 }}>Head</Text>
                         </View>
-                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 2 * DEFAUTL_SPACE, marginRight: DEFAUTL_SPACE, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS }}>
-                            <FIcon name="heartbeat" color={Colors.RED} size={ICON_SIZE} />
+                        <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 2 * DEFAUTL_SPACE, marginRight: DEFAUTL_SPACE, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS }}>
+                            <FIcon name="heartbeat" color={Colors.RED} size={ICON_SIZE + 10} />
                             <Text style={{ fontSize: moderateScale(FONT_MID), fontWeight: 'bold', marginHorizontal: DEFAUTL_SPACE / 2 }}>Heart</Text>
                         </View>
                     </ScrollView>

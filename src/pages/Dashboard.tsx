@@ -9,6 +9,7 @@ import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import Carousel from 'react-native-snap-carousel';
 import Slider from '../components/Slider';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+import auth from '@react-native-firebase/auth';
 export default function Dashboard(props: { navigation: { push: Function, navigate: Function } }) {
 
     const { LOGIN_VIEW_HEIGHT, ICON_SIZE, BUTTON_HEIGHT, DEFAUTL_SPACE, FONT_SMALL, FONT_LARGE, FONT_MID, HEIGHT, WIDTH, BORDER_RADIUS_CIRCULAR, INLINE_GAP, BORDER_RADIUS, BORDER_WIDTH } = Numericals();
@@ -16,6 +17,8 @@ export default function Dashboard(props: { navigation: { push: Function, navigat
     const [mobileNo, setMobileNo] = useState('');
     const [loginHeading, setloginHeading] = useState("Let's get started! Enter your mobile number");
     const [backIconStatus, setbackIconStatus] = useState(false);
+    const [confirm, setConfirm] = useState(null);
+    const [code, setCode] = useState('');
 
     function interpolateAnima() {
         setbackIconStatus(true);
@@ -24,6 +27,19 @@ export default function Dashboard(props: { navigation: { push: Function, navigat
             toValue: 0,
             useNativeDriver: true
         }).start();
+    }
+
+    async function signInWithPhoneNumber() {
+        // console.log('sign in function');
+
+        // const confirmation = await auth().signInWithPhoneNumber('+91' + mobileNo);
+        // setConfirm(confirmation);
+        // console.log(confirmation);
+
+        // if (confirm) {
+        //     props.navigation.push('Otp', { confirmation: confirmation });
+        // }
+        props.navigation.push('Otp');
     }
 
     useEffect(() => {
@@ -54,8 +70,8 @@ export default function Dashboard(props: { navigation: { push: Function, navigat
                 <Slider />
             </View>
 
-            <Animated.View style={{ transform: [{ translateY: animaValue }], ...StyleSheet.absoluteFillObject, paddingHorizontal: moderateScale(DEFAUTL_SPACE / 2), backgroundColor: Colors.WHITE }}>
-                <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-between', alignItems: 'stretch', paddingVertical: moderateScale(DEFAUTL_SPACE) }}>
+            <Animated.View style={{ transform: [{ translateY: animaValue }], ...StyleSheet.absoluteFillObject, paddingHorizontal: moderateScale(DEFAUTL_SPACE), backgroundColor: Colors.WHITE }}>
+                <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-between', alignItems: 'stretch', paddingVertical: moderateScale(DEFAUTL_SPACE / 2) }}>
                     <View>
                         <TouchableOpacity style={{ paddingVertical: moderateScale(DEFAUTL_SPACE), justifyContent: 'flex-start', alignItems: 'flex-start' }} onPress={() => backAnim()}>
                             <AIcon name="arrowleft" size={backIconStatus ? ICON_SIZE : 0} />
@@ -74,7 +90,7 @@ export default function Dashboard(props: { navigation: { push: Function, navigat
                         </View>
                     </View>
                     <Pressable style={[{ backgroundColor: Colors.PRIMARY, justifyContent: 'center', alignItems: 'center', height: BUTTON_HEIGHT, flexDirection: 'row' }]} onPress={() => {
-                        props.navigation.push('Otp');
+                        signInWithPhoneNumber()
                     }}>
                         <Text style={{ fontFamily: 'Museo700-Regular', fontSize: moderateScale(FONT_MID), color: Colors.WHITE }}>Submit</Text>
                     </Pressable>

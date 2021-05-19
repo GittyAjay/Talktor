@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "532901670586",
+    "project_id": "talktor-754a3",
+    "storage_bucket": "talktor-754a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:532901670586:android:7c23aa65e40cd28d299c83",
+        "android_client_info": {
+          "package_name": "com.talktor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "532901670586-edvrfvlhu2u5cq97793r9ec5vbe7l9kr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEn99MLLRKMS778tRQyyGRWYrsFhT1kCw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "532901670586-edvrfvlhu2u5cq97793r9ec5vbe7l9kr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

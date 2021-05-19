@@ -22,7 +22,9 @@ export function Numericals() {
         BORDER_WIDTH: 1,
         BORDER_RADIUS: 10,
         BORDER_RADIUS_CIRCULAR: 30,
-        LOGIN_VIEW_HEIGHT: 210
+        LOGIN_VIEW_HEIGHT: 210,
+        TEXT_INPUT_HEIGHT: 6,
+        COMMON_BUTTON_HEIGHT: 15
     }
 }
 

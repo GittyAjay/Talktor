@@ -7,10 +7,18 @@ import AIcon from 'react-native-vector-icons/AntDesign';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import { scale, moderateScale } from 'react-native-size-matters';
 
-export default function Otp(props: { navigation: { push: Function, pop: Function } }) {
+export default function Otp(props: { navigation: { push: Function, pop: Function }, route: { params: any } }) {
     const { ICON_SIZE, BUTTON_HEIGHT, DEFAUTL_SPACE, FONT_MID, FONT_LARGE, FONT_SMALL, INLINE_GAP, BORDER_WIDTH } = Numericals();
     const mobile_no = '6392363003';
     const [isActive, setActive] = useState(false);
+    const [code, setCode] = useState('');
+    async function confirmCode() {
+        try {
+            await props.route.params.confirm.confirm(code);
+        } catch (error) {
+            console.log('Invalid code.');
+        }
+    }
     return (
         <View style={[styles.container, { backgroundColor: Colors.WHITE }]}>
             <StatusBarTemplate color={Colors.WHITE} />
