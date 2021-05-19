@@ -15,6 +15,7 @@ import { Colors } from '../constants/color';
 import Doctor from '../pages/Doctors';
 import Profile from '../pages/Profile';
 import Search from '../pages/Search';
+import SearchResult from '../pages/SearchResult';
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
@@ -96,6 +97,7 @@ const HomeNavigator = () => (
         <Screen name='Otp' component={Otp} />
         <Screen name='Home' component={HomeNav} />
         <Screen name='Search' component={Search} />
+        <Screen name='SearchResult' component={SearchResult} />
     </Navigator>
 );
 
