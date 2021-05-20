@@ -24,7 +24,8 @@ export function Numericals() {
         BORDER_RADIUS_CIRCULAR: 30,
         LOGIN_VIEW_HEIGHT: 210,
         TEXT_INPUT_HEIGHT: 6,
-        COMMON_BUTTON_HEIGHT: 15
+        COMMON_BUTTON_HEIGHT: 15,
+        SMALL_BUTTON_HEIGHT: 10,
     }
 }
 

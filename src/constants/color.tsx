@@ -12,5 +12,6 @@ export const Colors = {
     TIRTARY: '#603F8B',
     HOME_BCK: '#EBECF0',
     CYAN: '#4DC6EB',
-    STAR_COLOR: '#FF8100'
+    STAR_COLOR: '#FF8100',
+    ORANGE: '#FF7F00'
 }

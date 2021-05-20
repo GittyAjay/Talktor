@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, Image, ScrollView, Pressable } from 'react-native'
 import Header from '../header/header'
 import { Colors } from '../constants/color';
 import { scale, moderateScale } from 'react-native-size-matters';
@@ -8,7 +8,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import EIcon from 'react-native-vector-icons/Entypo'
 import EVIcon from 'react-native-vector-icons/EvilIcons'
 
-const SearchResult = () => {
+const SearchResult = (props: { navigation: any }) => {
     const { COMMON_BUTTON_HEIGHT, FONT_ELARGE, FONT_SMALL, FONT_MID, FONT_LARGE, BORDER_RADIUS, ICON_SIZE, INLINE_GAP, DEFAUTL_SPACE, TEXT_INPUT_HEIGHT } = Numericals();
     const headerComponnets = () =>
         <View>
@@ -27,7 +27,7 @@ const SearchResult = () => {
                         </TouchableOpacity>
                     </View>
                     <View style={[styles.main]}>
-                        <View style={[styles.mainElement, styles.shadow, { height: 100, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, paddingHorizontal: INLINE_GAP, marginBottom: DEFAUTL_SPACE }]}>
+                        <Pressable style={({ pressed }) => [styles.mainElement, styles.shadow, { height: 100, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, paddingHorizontal: INLINE_GAP, marginBottom: DEFAUTL_SPACE, transform: [{ scale: pressed ? 0.97 : 1 }] }]} onPress={() => props.navigation.push('Doctor')}>
                             <View style={[styles.imageCard, { borderRadius: BORDER_RADIUS, backgroundColor: Colors.CYAN }]}>
                                 <Image source={require('../assets/images/doctor.png')} style={{ width: 50, height: 70 }} />
                             </View>
@@ -58,8 +58,8 @@ const SearchResult = () => {
                                     </View>
                                 </View>
                             </View>
-                        </View>
-                        <View style={[styles.mainElement, styles.shadow, { height: 100, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, paddingHorizontal: INLINE_GAP, marginBottom: DEFAUTL_SPACE }]}>
+                        </Pressable>
+                        <Pressable style={({ pressed }) => [styles.mainElement, styles.shadow, { height: 100, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, paddingHorizontal: INLINE_GAP, marginBottom: DEFAUTL_SPACE, transform: [{ scale: pressed ? 0.97 : 1 }] }]} onPress={() => props.navigation.push('Doctor')}>
                             <View style={[styles.imageCard, { borderRadius: BORDER_RADIUS, backgroundColor: Colors.CYAN }]}>
                                 <Image source={require('../assets/images/doctor.png')} style={{ width: 50, height: 70 }} />
                             </View>
@@ -90,9 +90,9 @@ const SearchResult = () => {
                                     </View>
                                 </View>
                             </View>
-                        </View>
+                        </Pressable>
 
-                        <View style={[styles.mainElement, styles.shadow, { height: 100, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, paddingHorizontal: INLINE_GAP, marginBottom: DEFAUTL_SPACE }]}>
+                        <Pressable style={({ pressed }) => [styles.mainElement, styles.shadow, { height: 100, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, paddingHorizontal: INLINE_GAP, marginBottom: DEFAUTL_SPACE, transform: [{ scale: pressed ? 0.97 : 1 }] }]} onPress={() => props.navigation.push('Doctor')}>
                             <View style={[styles.imageCard, { borderRadius: BORDER_RADIUS, backgroundColor: Colors.CYAN }]}>
                                 <Image source={require('../assets/images/doctor.png')} style={{ width: 50, height: 70 }} />
                             </View>
@@ -123,9 +123,9 @@ const SearchResult = () => {
                                     </View>
                                 </View>
                             </View>
-                        </View>
+                        </Pressable>
 
-                        <View style={[styles.mainElement, styles.shadow, { height: 100, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, paddingHorizontal: INLINE_GAP, marginBottom: DEFAUTL_SPACE }]}>
+                        <Pressable style={({ pressed }) => [styles.mainElement, styles.shadow, { height: 100, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, paddingHorizontal: INLINE_GAP, marginBottom: DEFAUTL_SPACE, transform: [{ scale: pressed ? 0.97 : 1 }] }]} onPress={() => props.navigation.push('Doctor')}>
                             <View style={[styles.imageCard, { borderRadius: BORDER_RADIUS, backgroundColor: Colors.CYAN }]}>
                                 <Image source={require('../assets/images/doctor.png')} style={{ width: 50, height: 70 }} />
                             </View>
@@ -156,7 +156,7 @@ const SearchResult = () => {
                                     </View>
                                 </View>
                             </View>
-                        </View>
+                        </Pressable>
                         <View style={{ flexDirection: 'column' }}>
 
 

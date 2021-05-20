@@ -12,7 +12,7 @@ import AIcon from 'react-native-vector-icons/AntDesign';
 import F5Icon from 'react-native-vector-icons/FontAwesome5';
 import { Numericals } from '../constants/numerical';
 import { Colors } from '../constants/color';
-import Doctor from '../pages/Doctors';
+import Doctor from '../pages/Doctor';
 import Profile from '../pages/Profile';
 import Search from '../pages/Search';
 import SearchResult from '../pages/SearchResult';
@@ -98,6 +98,7 @@ const HomeNavigator = () => (
         <Screen name='Home' component={HomeNav} />
         <Screen name='Search' component={Search} />
         <Screen name='SearchResult' component={SearchResult} />
+        <Screen name='Doctor' component={Doctor} />
     </Navigator>
 );
 
