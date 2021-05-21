@@ -26,6 +26,7 @@ export function Numericals() {
         TEXT_INPUT_HEIGHT: 6,
         COMMON_BUTTON_HEIGHT: 15,
         SMALL_BUTTON_HEIGHT: 10,
+        SMALL_DOT_SIZE: 6
     }
 }
 

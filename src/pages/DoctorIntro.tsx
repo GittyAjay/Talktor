@@ -9,7 +9,7 @@ import MIcon from 'react-native-vector-icons/MaterialIcons'
 import AIcon from 'react-native-vector-icons/AntDesign'
 
 
-const Doctor = () => {
+const DoctorIntro = (props: { navigation: any }) => {
     const { COMMON_BUTTON_HEIGHT, FONT_ELARGE, FONT_SMALL, FONT_MID, FONT_LARGE, SMALL_BUTTON_HEIGHT, BUTTON_HEIGHT, BORDER_RADIUS, ICON_SIZE, INLINE_GAP, DEFAUTL_SPACE, TEXT_INPUT_HEIGHT } = Numericals();
     const headerComponnets = () =>
         <View>
@@ -67,7 +67,7 @@ const Doctor = () => {
                             <Text style={[style.fontStyle, { fontSize: FONT_MID, color: Colors.BLACK }]}>2.05k</Text>
                         </View>
                     </View>
-                    <Pressable style={({ pressed }) => [{ paddingVertical: COMMON_BUTTON_HEIGHT, marginVertical: INLINE_GAP, backgroundColor: Colors.PRIMARY, borderRadius: BORDER_RADIUS, justifyContent: 'center', alignItems: 'center', transform: [{ scale: pressed ? 0.95 : 1 }] }]} >
+                    <Pressable style={({ pressed }) => [{ paddingVertical: COMMON_BUTTON_HEIGHT, marginVertical: INLINE_GAP, backgroundColor: Colors.PRIMARY, borderRadius: BORDER_RADIUS, justifyContent: 'center', alignItems: 'center', transform: [{ scale: pressed ? 0.95 : 1 }] }]} onPress={() => props.navigation.push('AppointmentReq')}>
                         <Text style={[style.fontStyle, { fontSize: FONT_MID, color: Colors.WHITE, fontWeight: 'bold' }]}>Book an Appointment</Text>
                     </Pressable>
                 </View>
@@ -121,4 +121,4 @@ const style = StyleSheet.create({
     }
 })
 
-export default Doctor
+export default DoctorIntro

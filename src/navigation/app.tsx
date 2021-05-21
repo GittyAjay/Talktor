@@ -12,12 +12,15 @@ import AIcon from 'react-native-vector-icons/AntDesign';
 import F5Icon from 'react-native-vector-icons/FontAwesome5';
 import { Numericals } from '../constants/numerical';
 import { Colors } from '../constants/color';
-import Doctor from '../pages/Doctor';
+import DoctorIntro from '../pages/DoctorIntro';
 import Profile from '../pages/Profile';
 import Search from '../pages/Search';
 import SearchResult from '../pages/SearchResult';
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import AppointmentReq from '../pages/AppointmentReq'
+import AppointmentRes from '../pages/AppointmentRes'
+import Payment from '../pages/Payment'
 
 const Drawer = createDrawerNavigator();
 const { Navigator, Screen } = createStackNavigator();
@@ -68,7 +71,7 @@ function HomeNav() {
                     tabBarButton: (props) => <CustomTab label="Doctors" icon={Icons[1]} {...props} />
                 }}
             />
-            <Tab.Screen name="Search" component={Doctor}
+            <Tab.Screen name="Search" component={DoctorIntro}
                 options={{
                     tabBarButton: (props) => <CustomTab label="Notification" icon={Icons[2]} {...props} />
                 }}
@@ -98,7 +101,11 @@ const HomeNavigator = () => (
         <Screen name='Home' component={HomeNav} />
         <Screen name='Search' component={Search} />
         <Screen name='SearchResult' component={SearchResult} />
-        <Screen name='Doctor' component={Doctor} />
+        <Screen name='Doctor' component={DoctorIntro} />
+        <Screen name='AppointmentReq' component={AppointmentReq} />
+        <Screen name='Payment' component={Payment} />
+        <Screen name='AppointmentRes' component={AppointmentRes} />
+
     </Navigator>
 );
 

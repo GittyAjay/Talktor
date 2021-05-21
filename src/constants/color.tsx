@@ -7,6 +7,7 @@ export const Colors = {
     BLACK: 'black',
     RED: 'red',
     PRIMARY: '#0012B7',
+    PRIMARY_LIGHT: '#D9DCF4',
     PRIMARY_SHADE: '#071DEB',
     SECONDARY: '#8155BA',
     TIRTARY: '#603F8B',
