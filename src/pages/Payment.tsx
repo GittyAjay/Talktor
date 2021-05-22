@@ -14,6 +14,11 @@ import LinearGradient from 'react-native-linear-gradient'
 const Payment = (props: { navigation: any }) => {
     const { COMMON_BUTTON_HEIGHT, FONT_ELARGE, FONT_SMALL, FONT_MID, WIDTH, FONT_LARGE, SMALL_BUTTON_HEIGHT, BUTTON_HEIGHT, SMALL_DOT_SIZE, BORDER_RADIUS, ICON_SIZE, INLINE_GAP, DEFAUTL_SPACE, TEXT_INPUT_HEIGHT } = Numericals();
     const [paymentMethod, setPaymentMethod] = useState('Card');
+    const [cardNumber, setCardNumber] = useState('....   ....    9947');
+    const [nameOnCard, setNameOnCard] = useState('Ajay Kumar Pandey');
+    const [expirationDate, setExpirationDate] = useState('11');
+    const [expirationMonth, setExpirationMonth] = useState('47');
+    const [securityCode, setSecurityCode] = useState('11');
     const headerComponnets = () =>
         <View>
             <Text style={{ fontSize: moderateScale(FONT_MID), fontWeight: 'bold' }}>Payment</Text>
@@ -74,57 +79,54 @@ const Payment = (props: { navigation: any }) => {
                                     <FTcon name="ellipse" color={Colors.WHITE} size={SMALL_DOT_SIZE} style={{ paddingRight: DEFAUTL_SPACE / 2 }} />
                                 </View>
                                 <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text style={{ fontSize: FONT_SMALL, color: Colors.WHITE, fontWeight: 'bold', paddingRight: 1 }}>9</Text>
-                                    <Text style={{ fontSize: FONT_SMALL, color: Colors.WHITE, fontWeight: 'bold', paddingRight: 1 }}>9</Text>
-                                    <Text style={{ fontSize: FONT_SMALL, color: Colors.WHITE, fontWeight: 'bold', paddingRight: 1 }}>4</Text>
-                                    <Text style={{ fontSize: FONT_SMALL, color: Colors.WHITE, fontWeight: 'bold', paddingRight: 1 }}>7</Text>
+                                    <Text style={{ fontSize: moderateScale(FONT_SMALL), color: Colors.WHITE, fontWeight: 'bold', paddingRight: 1 }}>9</Text>
+                                    <Text style={{ fontSize: moderateScale(FONT_SMALL), color: Colors.WHITE, fontWeight: 'bold', paddingRight: 1 }}>9</Text>
+                                    <Text style={{ fontSize: moderateScale(FONT_SMALL), color: Colors.WHITE, fontWeight: 'bold', paddingRight: 1 }}>4</Text>
+                                    <Text style={{ fontSize: moderateScale(FONT_SMALL), color: Colors.WHITE, fontWeight: 'bold', paddingRight: 1 }}>7</Text>
                                 </View>
                             </View>
                             <View>
-                                <Text style={{ color: Colors.WHITE }}>Valid Thru: 11/27</Text>
+                                <Text style={{ color: Colors.WHITE }}>Valid Thru: {expirationDate}/{expirationMonth}</Text>
                             </View>
                         </View>
                         <LinearGradient
                             start={{ x: 1, y: 0 }}
                             end={{ x: 0.6, y: 1 }}
                             colors={[Colors.SECONDARY, Colors.PRIMARY]} style={{ height: 50, backgroundColor: Colors.PRIMARY, borderBottomLeftRadius: BORDER_RADIUS, borderBottomEndRadius: BORDER_RADIUS, justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: INLINE_GAP, flexDirection: 'row' }}>
-                            <Text style={{ color: Colors.WHITE, fontWeight: 'bold' }}>AJAY KUMAR PANDEY</Text>
+                            <Text style={{ color: Colors.WHITE, fontWeight: 'bold' }}>{nameOnCard}</Text>
                             <Image source={require('../assets/images/visa.png')} style={{ width: 70, height: 22 }} />
                         </LinearGradient>
                     </LinearGradient>
                     <View style={[styles.form, { marginHorizontal: INLINE_GAP, paddingVertical: INLINE_GAP, alignItems: 'stretch' }]}>
                         <Pressable style={({ pressed }) => [{ marginBottom: INLINE_GAP }]}>
                             <Text style={{ color: Colors.GREY.SIMPLE }}>Card number</Text>
-                            <TextInput value="....   ....    9947" style={{ borderBottomColor: Colors.GREY.SIMPLE, borderBottomWidth: 1 }} />
+                            <TextInput value={cardNumber} style={{ borderBottomColor: Colors.GREY.SIMPLE, borderBottomWidth: 1 }} onChangeText={text => setCardNumber(text)} />
                         </Pressable>
                         <Pressable style={({ pressed }) => [{ marginBottom: INLINE_GAP }]}>
                             <Text style={{ color: Colors.GREY.SIMPLE }}>Name On Card</Text>
-                            <TextInput value="Ajay Kumar Pandey" style={{ borderBottomColor: Colors.GREY.SIMPLE, borderBottomWidth: 1 }} />
+                            <TextInput value={nameOnCard} style={{ borderBottomColor: Colors.GREY.SIMPLE, borderBottomWidth: 1 }} onChangeText={name => setNameOnCard(name.toUpperCase())} autoCapitalize="characters" />
                         </Pressable>
                         <Pressable style={({ pressed }) => [{ marginBottom: INLINE_GAP }]}>
                             <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
                                 <View style={{ flexDirection: 'column', marginRight: INLINE_GAP }}>
                                     <Text style={{ color: Colors.GREY.SIMPLE }}>Expiration Date</Text>
                                     <View style={{ flexDirection: 'row' }}>
-                                        <TextInput value="11" style={{ borderBottomColor: Colors.GREY.SIMPLE, borderBottomWidth: 1, marginRight: INLINE_GAP }} />
-                                        <TextInput value="47" style={{ borderBottomColor: Colors.GREY.SIMPLE, borderBottomWidth: 1 }} />
+                                        <TextInput value={expirationDate} style={{ borderBottomColor: Colors.GREY.SIMPLE, borderBottomWidth: 1, marginRight: INLINE_GAP }} onChangeText={date => setExpirationDate(date)} />
+                                        <TextInput value={expirationMonth} style={{ borderBottomColor: Colors.GREY.SIMPLE, borderBottomWidth: 1 }} onChangeText={month => setExpirationMonth(month)} />
                                     </View>
                                 </View>
                                 <View style={{ flexDirection: 'column' }}>
-                                    <Text style={{ color: Colors.GREY.SIMPLE }}>Expiration Date</Text>
-                                    <View style={{ flexDirection: 'row' }}>
-                                        <TextInput value="11" style={{ borderBottomColor: Colors.GREY.SIMPLE, borderBottomWidth: 1, marginRight: INLINE_GAP }} />
-                                        <TextInput value="47" style={{ borderBottomColor: Colors.GREY.SIMPLE, borderBottomWidth: 1 }} />
-                                    </View>
+                                    <Text style={{ color: Colors.GREY.SIMPLE }}>Security Code</Text>
+                                    <TextInput value={securityCode} style={{ borderBottomColor: Colors.GREY.SIMPLE, borderBottomWidth: 1, marginRight: INLINE_GAP }} onChangeText={secCode => setSecurityCode(secCode)} />
                                 </View>
                             </View>
                         </Pressable>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                            <Text style={[styles.fontStyle, { fontWeight: 'bold', fontSize: FONT_LARGE }]}>Total Price</Text>
-                            <Text style={[styles.fontStyle, { fontWeight: 'bold', fontSize: FONT_LARGE }]}>₹2000,0</Text>
+                            <Text style={[styles.fontStyle, { fontWeight: 'bold', fontSize: moderateScale(FONT_LARGE) }]}>Total Price</Text>
+                            <Text style={[styles.fontStyle, { fontWeight: 'bold', fontSize: moderateScale(FONT_LARGE) }]}>₹2000,0</Text>
                         </View>
-                        <Pressable style={({ pressed }) => [{ paddingVertical: COMMON_BUTTON_HEIGHT, backgroundColor: Colors.PRIMARY, borderRadius: BORDER_RADIUS, justifyContent: 'center', alignItems: 'center', marginVertical: INLINE_GAP, transform: [{ scale: pressed ? 0.95 : 1 }] }]} onPress={() => props.navigation.push('AppointmentRes')}>
-                            <Text style={[styles.fontStyle, { fontSize: FONT_MID, color: Colors.WHITE, fontWeight: 'bold' }]}>Confirm</Text>
+                        <Pressable style={({ pressed }) => [{ paddingVertical: moderateScale(COMMON_BUTTON_HEIGHT), backgroundColor: Colors.PRIMARY, borderRadius: BORDER_RADIUS, justifyContent: 'center', alignItems: 'center', marginVertical: INLINE_GAP, transform: [{ scale: pressed ? 0.95 : 1 }] }]} onPress={() => props.navigation.push('AppointmentRes')}>
+                            <Text style={[styles.fontStyle, { fontSize: moderateScale(FONT_MID), color: Colors.WHITE, fontWeight: 'bold' }]}>Confirm</Text>
                         </Pressable>
                     </View>
                 </ScrollView>

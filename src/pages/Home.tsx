@@ -30,7 +30,9 @@ export default function Home(props: { navigation: any }) {
                             <TouchableOpacity onPress={() => props.navigation.push('Search')}>
                                 <AIcon name="search1" color={Colors.BLACK} size={ICON_SIZE} />
                             </TouchableOpacity>
-                            <IIcon name="chatbubble-ellipses-outline" size={ICON_SIZE} style={{ paddingLeft: INLINE_GAP }} />
+                            <TouchableOpacity>
+                                <IIcon name="chatbubble-ellipses-outline" size={ICON_SIZE} style={{ paddingLeft: INLINE_GAP }} />
+                            </TouchableOpacity>
                         </View>
                     </View>
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginVertical: DEFAUTL_SPACE }}>
@@ -40,22 +42,22 @@ export default function Home(props: { navigation: any }) {
                         <Text style={{ fontFamily: "Museo700-Regular", fontSize: FONT_LARGE }}>Find your doctors</Text>
                     </View>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{ marginHorizontal: INLINE_GAP }}>
-                        <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 2 * DEFAUTL_SPACE, marginRight: DEFAUTL_SPACE, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS }}>
+                        <Pressable style={({ pressed }) => [{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 2 * DEFAUTL_SPACE, marginRight: DEFAUTL_SPACE, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, transform: [{ scale: pressed ? 0.96 : 1 }] }]} onPress={() => props.navigation.push('SearchResult')}>
                             <FIcon name="heartbeat" color={Colors.RED} size={ICON_SIZE + 10} />
                             <Text style={{ fontSize: moderateScale(FONT_MID), fontWeight: 'bold', marginHorizontal: DEFAUTL_SPACE / 2 }}>Heart</Text>
-                        </View>
-                        <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 2 * DEFAUTL_SPACE, marginRight: DEFAUTL_SPACE, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS }}>
+                        </Pressable>
+                        <Pressable style={({ pressed }) => [{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 2 * DEFAUTL_SPACE, marginRight: DEFAUTL_SPACE, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, transform: [{ scale: pressed ? 0.96 : 1 }] }]} onPress={() => props.navigation.push('SearchResult')}>
                             <AIcon name="eye" color={Colors.PRIMARY} size={ICON_SIZE + 10} />
                             <Text style={{ fontSize: moderateScale(FONT_MID), fontWeight: 'bold', marginHorizontal: DEFAUTL_SPACE / 2 }}>Eye</Text>
-                        </View>
-                        <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 2 * DEFAUTL_SPACE, marginRight: DEFAUTL_SPACE, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS }}>
+                        </Pressable>
+                        <Pressable style={({ pressed }) => [{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 2 * DEFAUTL_SPACE, marginRight: DEFAUTL_SPACE, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, transform: [{ scale: pressed ? 0.96 : 1 }] }]} onPress={() => props.navigation.push('SearchResult')}>
                             <MIcon name="head" color={Colors.RED} size={ICON_SIZE + 10} />
                             <Text style={{ fontSize: moderateScale(FONT_MID), fontWeight: 'bold', marginHorizontal: DEFAUTL_SPACE / 2 }}>Head</Text>
-                        </View>
-                        <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 2 * DEFAUTL_SPACE, marginRight: DEFAUTL_SPACE, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS }}>
+                        </Pressable>
+                        <Pressable style={({ pressed }) => [{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 2 * DEFAUTL_SPACE, marginRight: DEFAUTL_SPACE, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, transform: [{ scale: pressed ? 0.96 : 1 }] }]} onPress={() => props.navigation.push('SearchResult')}>
                             <FIcon name="heartbeat" color={Colors.RED} size={ICON_SIZE + 10} />
                             <Text style={{ fontSize: moderateScale(FONT_MID), fontWeight: 'bold', marginHorizontal: DEFAUTL_SPACE / 2 }}>Heart</Text>
-                        </View>
+                        </Pressable>
                     </ScrollView>
 
                     <View style={{ marginVertical: DEFAUTL_SPACE, marginHorizontal: INLINE_GAP, }}>
@@ -64,7 +66,7 @@ export default function Home(props: { navigation: any }) {
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{ marginHorizontal: INLINE_GAP }}>
 
                         <View style={{ flex: 1, justifyContent: 'space-between' }}>
-                            <View style={{
+                            <Pressable style={({ pressed }) => [{
                                 width: 290,
                                 height: 220,
                                 flexDirection: 'row',
@@ -74,7 +76,10 @@ export default function Home(props: { navigation: any }) {
                                 paddingHorizontal: DEFAUTL_SPACE,
                                 marginVertical: DEFAUTL_SPACE,
                                 borderRadius: BORDER_RADIUS,
-                            }}>
+                                transform: [{ scale: pressed ? 0.96 : 1 }]
+                            }]}
+                                onPress={() => props.navigation.push('DoctorIntro')}
+                            >
                                 <View style={{ flex: 1, justifyContent: 'space-between', padding: DEFAUTL_SPACE }}>
                                     <Text style={{ fontSize: FONT_MID, color: Colors.BLACK, }}>Maria daboria</Text>
                                     <Text style={{ fontSize: FONT_SMALL, color: Colors.BLACK, }}>Brain Specialist</Text>
@@ -96,10 +101,10 @@ export default function Home(props: { navigation: any }) {
                                 <View>
                                     <Image source={require('../assets/images/doctor.png')} />
                                 </View>
-                            </View>
+                            </Pressable>
                         </View>
                         <View style={{ flex: 1, justifyContent: 'space-between' }}>
-                            <View style={{
+                            <Pressable style={({ pressed }) => [{
                                 width: 290,
                                 height: 220,
                                 flexDirection: 'row',
@@ -109,7 +114,10 @@ export default function Home(props: { navigation: any }) {
                                 paddingHorizontal: DEFAUTL_SPACE,
                                 marginVertical: DEFAUTL_SPACE,
                                 borderRadius: BORDER_RADIUS,
-                            }}>
+                                transform: [{ scale: pressed ? 0.96 : 1 }]
+                            }]}
+                                onPress={() => props.navigation.push('DoctorIntro')}
+                            >
                                 <View style={{ flex: 1, justifyContent: 'space-between', padding: DEFAUTL_SPACE }}>
                                     <Text style={{ fontSize: FONT_MID, color: Colors.BLACK, }}>Sanboq erotica</Text>
                                     <Text style={{ fontSize: FONT_SMALL, color: Colors.BLACK, }}>Heart Specialist</Text>
@@ -131,7 +139,7 @@ export default function Home(props: { navigation: any }) {
                                 <View >
                                     <Image source={require('../assets/images/doctor1.png')} />
                                 </View>
-                            </View>
+                            </Pressable>
                         </View>
                     </ScrollView>
                 </View>

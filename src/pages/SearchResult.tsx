@@ -27,7 +27,7 @@ const SearchResult = (props: { navigation: any }) => {
                         </TouchableOpacity>
                     </View>
                     <View style={[styles.main]}>
-                        <Pressable style={({ pressed }) => [styles.mainElement, styles.shadow, { height: 100, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, paddingHorizontal: INLINE_GAP, marginBottom: DEFAUTL_SPACE, transform: [{ scale: pressed ? 0.97 : 1 }] }]} onPress={() => props.navigation.push('Doctor')}>
+                        <Pressable style={({ pressed }) => [styles.mainElement, styles.shadow, { height: 100, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, paddingHorizontal: INLINE_GAP, marginBottom: DEFAUTL_SPACE, transform: [{ scale: pressed ? 0.97 : 1 }] }]} onPress={() => props.navigation.push('DoctorIntro')}>
                             <View style={[styles.imageCard, { borderRadius: BORDER_RADIUS, backgroundColor: Colors.CYAN }]}>
                                 <Image source={require('../assets/images/doctor.png')} style={{ width: 50, height: 70 }} />
                             </View>
@@ -59,40 +59,7 @@ const SearchResult = (props: { navigation: any }) => {
                                 </View>
                             </View>
                         </Pressable>
-                        <Pressable style={({ pressed }) => [styles.mainElement, styles.shadow, { height: 100, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, paddingHorizontal: INLINE_GAP, marginBottom: DEFAUTL_SPACE, transform: [{ scale: pressed ? 0.97 : 1 }] }]} onPress={() => props.navigation.push('Doctor')}>
-                            <View style={[styles.imageCard, { borderRadius: BORDER_RADIUS, backgroundColor: Colors.CYAN }]}>
-                                <Image source={require('../assets/images/doctor.png')} style={{ width: 50, height: 70 }} />
-                            </View>
-                            <View style={[styles.content, { paddingHorizontal: INLINE_GAP }]}>
-                                <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-                                    <Text>Dr. Sarena Gomez</Text>
-                                    <View style={{ flexDirection: 'row' }}>
-                                        <EIcon name="star" size={ICON_SIZE} color={Colors.STAR_COLOR} />
-                                        <EIcon name="star" size={ICON_SIZE} color={Colors.STAR_COLOR} />
-                                        <EIcon name="star" size={ICON_SIZE} color={Colors.STAR_COLOR} />
-                                        <EIcon name="star" size={ICON_SIZE} color={Colors.STAR_COLOR} />
-                                        <EIcon name="star" size={ICON_SIZE} color={Colors.STAR_COLOR} />
-                                    </View>
-                                </View>
-                                <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-                                    <Text>Cardiologist(MBBS)</Text>
-                                </View>
-                                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                                    <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                                        <EVIcon name="clock" size={ICON_SIZE} style={{ paddingRight: DEFAUTL_SPACE / 2 }} />
-                                        <Text>12:00pm</Text>
-                                        <Text style={{ paddingHorizontal: DEFAUTL_SPACE / 2 }}>-</Text>
-                                        <Text>4:00pm</Text>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
-                                        <EIcon name="location-pin" size={ICON_SIZE} />
-                                        <Text>New City Clinic</Text>
-                                    </View>
-                                </View>
-                            </View>
-                        </Pressable>
-
-                        <Pressable style={({ pressed }) => [styles.mainElement, styles.shadow, { height: 100, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, paddingHorizontal: INLINE_GAP, marginBottom: DEFAUTL_SPACE, transform: [{ scale: pressed ? 0.97 : 1 }] }]} onPress={() => props.navigation.push('Doctor')}>
+                        <Pressable style={({ pressed }) => [styles.mainElement, styles.shadow, { height: 100, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, paddingHorizontal: INLINE_GAP, marginBottom: DEFAUTL_SPACE, transform: [{ scale: pressed ? 0.97 : 1 }] }]} onPress={() => props.navigation.push('DoctorIntro')}>
                             <View style={[styles.imageCard, { borderRadius: BORDER_RADIUS, backgroundColor: Colors.CYAN }]}>
                                 <Image source={require('../assets/images/doctor.png')} style={{ width: 50, height: 70 }} />
                             </View>
@@ -125,7 +92,40 @@ const SearchResult = (props: { navigation: any }) => {
                             </View>
                         </Pressable>
 
-                        <Pressable style={({ pressed }) => [styles.mainElement, styles.shadow, { height: 100, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, paddingHorizontal: INLINE_GAP, marginBottom: DEFAUTL_SPACE, transform: [{ scale: pressed ? 0.97 : 1 }] }]} onPress={() => props.navigation.push('Doctor')}>
+                        <Pressable style={({ pressed }) => [styles.mainElement, styles.shadow, { height: 100, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, paddingHorizontal: INLINE_GAP, marginBottom: DEFAUTL_SPACE, transform: [{ scale: pressed ? 0.97 : 1 }] }]} onPress={() => props.navigation.push('DoctorIntro')}>
+                            <View style={[styles.imageCard, { borderRadius: BORDER_RADIUS, backgroundColor: Colors.CYAN }]}>
+                                <Image source={require('../assets/images/doctor.png')} style={{ width: 50, height: 70 }} />
+                            </View>
+                            <View style={[styles.content, { paddingHorizontal: INLINE_GAP }]}>
+                                <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+                                    <Text>Dr. Sarena Gomez</Text>
+                                    <View style={{ flexDirection: 'row' }}>
+                                        <EIcon name="star" size={ICON_SIZE} color={Colors.STAR_COLOR} />
+                                        <EIcon name="star" size={ICON_SIZE} color={Colors.STAR_COLOR} />
+                                        <EIcon name="star" size={ICON_SIZE} color={Colors.STAR_COLOR} />
+                                        <EIcon name="star" size={ICON_SIZE} color={Colors.STAR_COLOR} />
+                                        <EIcon name="star" size={ICON_SIZE} color={Colors.STAR_COLOR} />
+                                    </View>
+                                </View>
+                                <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+                                    <Text>Cardiologist(MBBS)</Text>
+                                </View>
+                                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                                    <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                                        <EVIcon name="clock" size={ICON_SIZE} style={{ paddingRight: DEFAUTL_SPACE / 2 }} />
+                                        <Text>12:00pm</Text>
+                                        <Text style={{ paddingHorizontal: DEFAUTL_SPACE / 2 }}>-</Text>
+                                        <Text>4:00pm</Text>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
+                                        <EIcon name="location-pin" size={ICON_SIZE} />
+                                        <Text>New City Clinic</Text>
+                                    </View>
+                                </View>
+                            </View>
+                        </Pressable>
+
+                        <Pressable style={({ pressed }) => [styles.mainElement, styles.shadow, { height: 100, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, paddingHorizontal: INLINE_GAP, marginBottom: DEFAUTL_SPACE, transform: [{ scale: pressed ? 0.97 : 1 }] }]} onPress={() => props.navigation.push('DoctorIntro')}>
                             <View style={[styles.imageCard, { borderRadius: BORDER_RADIUS, backgroundColor: Colors.CYAN }]}>
                                 <Image source={require('../assets/images/doctor.png')} style={{ width: 50, height: 70 }} />
                             </View>
@@ -166,17 +166,22 @@ const SearchResult = (props: { navigation: any }) => {
                             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
 
                                 <View style={{ flex: 1, justifyContent: 'space-between' }}>
-                                    <View style={{
-                                        width: 290,
-                                        height: 220,
-                                        flexDirection: 'row',
-                                        alignItems: 'center',
-                                        marginRight: DEFAUTL_SPACE,
-                                        backgroundColor: Colors.WHITE,
-                                        paddingHorizontal: DEFAUTL_SPACE,
-                                        marginVertical: DEFAUTL_SPACE,
-                                        borderRadius: BORDER_RADIUS,
-                                    }}>
+                                    <Pressable style={({ pressed }) => [
+                                        {
+                                            width: 290,
+                                            height: 220,
+                                            flexDirection: 'row',
+                                            alignItems: 'center',
+                                            marginRight: DEFAUTL_SPACE,
+                                            backgroundColor: Colors.WHITE,
+                                            paddingHorizontal: DEFAUTL_SPACE,
+                                            marginVertical: DEFAUTL_SPACE,
+                                            borderRadius: BORDER_RADIUS,
+                                            transform: [{ scale: pressed ? 0.96 : 1 }]
+                                        }
+                                    ]}
+                                        onPress={() => props.navigation.push('DoctorIntro')}
+                                    >
                                         <View style={{ flex: 1, justifyContent: 'space-between', padding: DEFAUTL_SPACE }}>
                                             <Text style={{ fontSize: FONT_MID, color: Colors.BLACK, }}>Maria daboria</Text>
                                             <Text style={{ fontSize: FONT_SMALL, color: Colors.BLACK, }}>Brain Specialist</Text>
@@ -198,20 +203,25 @@ const SearchResult = (props: { navigation: any }) => {
                                         <View>
                                             <Image source={require('../assets/images/doctor.png')} />
                                         </View>
-                                    </View>
+                                    </Pressable>
                                 </View>
                                 <View style={{ flex: 1, justifyContent: 'space-between' }}>
-                                    <View style={{
-                                        width: 290,
-                                        height: 220,
-                                        flexDirection: 'row',
-                                        alignItems: 'center',
-                                        marginRight: DEFAUTL_SPACE,
-                                        backgroundColor: Colors.WHITE,
-                                        paddingHorizontal: DEFAUTL_SPACE,
-                                        marginVertical: DEFAUTL_SPACE,
-                                        borderRadius: BORDER_RADIUS,
-                                    }}>
+                                    <Pressable style={({ pressed }) => [
+                                        {
+                                            width: 290,
+                                            height: 220,
+                                            flexDirection: 'row',
+                                            alignItems: 'center',
+                                            marginRight: DEFAUTL_SPACE,
+                                            backgroundColor: Colors.WHITE,
+                                            paddingHorizontal: DEFAUTL_SPACE,
+                                            marginVertical: DEFAUTL_SPACE,
+                                            borderRadius: BORDER_RADIUS,
+                                            transform: [{ scale: pressed ? 0.96 : 1 }]
+                                        }
+                                    ]}
+                                        onPress={() => props.navigation.push('DoctorIntro')}
+                                    >
                                         <View style={{ flex: 1, justifyContent: 'space-between', padding: DEFAUTL_SPACE }}>
                                             <Text style={{ fontSize: FONT_MID, color: Colors.BLACK, }}>Sanboq erotica</Text>
                                             <Text style={{ fontSize: FONT_SMALL, color: Colors.BLACK, }}>Heart Specialist</Text>
@@ -233,7 +243,7 @@ const SearchResult = (props: { navigation: any }) => {
                                         <View >
                                             <Image source={require('../assets/images/doctor1.png')} />
                                         </View>
-                                    </View>
+                                    </Pressable>
                                 </View>
                             </ScrollView>
                         </View>

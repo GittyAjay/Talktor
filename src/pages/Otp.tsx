@@ -8,7 +8,7 @@ import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import { scale, moderateScale } from 'react-native-size-matters';
 
 export default function Otp(props: { navigation: { push: Function, pop: Function }, route: { params: any } }) {
-    const { ICON_SIZE, BUTTON_HEIGHT, DEFAUTL_SPACE, FONT_MID, FONT_LARGE, FONT_SMALL, INLINE_GAP, BORDER_WIDTH } = Numericals();
+    const { ICON_SIZE, BUTTON_HEIGHT, DEFAUTL_SPACE, FONT_MID, FONT_LARGE, BORDER_RADIUS, COMMON_BUTTON_HEIGHT, FONT_SMALL, INLINE_GAP, BORDER_WIDTH } = Numericals();
     const mobile_no = '6392363003';
     const [isActive, setActive] = useState(false);
     const [code, setCode] = useState('');
@@ -50,7 +50,7 @@ export default function Otp(props: { navigation: { push: Function, pop: Function
                 </View>
             </View>
             <View style={{ padding: moderateScale(DEFAUTL_SPACE / 2) }}>
-                <Pressable style={({ pressed }) => [{ backgroundColor: Colors.PRIMARY, justifyContent: 'center', alignItems: 'center', height: BUTTON_HEIGHT, flexDirection: 'row', transform: [{ scale: pressed ? 0.9 : 1 }] }]} onPress={() => props.navigation.push('Home')}>
+                <Pressable style={({ pressed }) => [{ paddingVertical: COMMON_BUTTON_HEIGHT, backgroundColor: Colors.PRIMARY, borderRadius: BORDER_RADIUS, justifyContent: 'center', alignItems: 'center', transform: [{ scale: pressed ? 0.95 : 1 }] }]} onPress={() => props.navigation.push('Home')}>
                     <Text style={{ fontFamily: 'Museo700-Regular', fontSize: moderateScale(FONT_MID), color: Colors.WHITE }}>Submit</Text>
                 </Pressable>
             </View>

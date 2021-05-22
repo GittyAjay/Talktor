@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import { View, Text, StyleSheet, Image, Pressable } from 'react-native'
 import { scale, moderateScale } from 'react-native-size-matters';
 import { Numericals } from '../constants/numerical'
@@ -7,6 +7,11 @@ import Header from '../header/header'
 
 function AppointmentResponse() {
     const { COMMON_BUTTON_HEIGHT, FONT_ELARGE, FONT_SMALL, FONT_MID, WIDTH, FONT_LARGE, SMALL_BUTTON_HEIGHT, BUTTON_HEIGHT, SMALL_DOT_SIZE, BORDER_RADIUS, ICON_SIZE, INLINE_GAP, DEFAUTL_SPACE, TEXT_INPUT_HEIGHT } = Numericals();
+    const [date, setDate] = useState('03 Feb 2021');
+    const [time, setTime] = useState('02:20 Pm');
+    const [doctor, setDoctor] = useState('Dr. Ripa Diwedi');
+    const [appointmentType, setAppointmentType] = useState('Online');
+    const [houreLeft, setHoureLeft] = useState('5:30');
     const headerComponnets = () =>
         <View>
             <Text style={{ fontSize: moderateScale(FONT_MID), fontWeight: 'bold' }}>Appointment</Text>
@@ -19,15 +24,15 @@ function AppointmentResponse() {
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                         <View style={{ flexDirection: 'column' }}>
                             <Text style={{ color: Colors.GREY.LIGHT }}>Date</Text>
-                            <Text style={{}}>03 Feb 2021</Text>
+                            <Text style={{}}>{date}</Text>
                         </View>
                         <View style={{ flexDirection: 'column' }}>
-                            <Text style={{ color: Colors.GREY.LIGHT }}>Date</Text>
-                            <Text style={{}}>03 Feb 2021</Text>
+                            <Text style={{ color: Colors.GREY.LIGHT }}>Time</Text>
+                            <Text style={{}}>{time}</Text>
                         </View>
                         <View style={{ flexDirection: 'column' }}>
-                            <Text style={{ color: Colors.GREY.LIGHT }}>Date</Text>
-                            <Text style={{}}>03 Feb 2021</Text>
+                            <Text style={{ color: Colors.GREY.LIGHT }}>Doctor</Text>
+                            <Text style={{}}>{doctor}</Text>
                         </View>
                     </View>
                     <View style={{ height: 0.5, backgroundColor: Colors.GREY.LIGHT, marginHorizontal: -INLINE_GAP }}>
@@ -35,14 +40,14 @@ function AppointmentResponse() {
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                         <View style={{ flexDirection: 'column' }}>
                             <Text style={{ color: Colors.GREY.LIGHT }}>Appoitment type</Text>
-                            <Text style={{}}>Online</Text>
+                            <Text style={{}}>{appointmentType}</Text>
                         </View>
                     </View>
                 </View>
                 <View style={[styles.appointmentDetail, { height: 120, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, paddingHorizontal: INLINE_GAP, justifyContent: 'center', alignItems: 'center' }]}>
                     <View style={{ flexDirection: 'row' }}>
                         <Text style={[styles.fontStyle, { fontWeight: 'bold' }]}>You Have</Text>
-                        <Text style={[styles.fontStyle, { fontWeight: 'bold', color: Colors.CYAN, paddingHorizontal: DEFAUTL_SPACE / 2 }]}>5.30</Text>
+                        <Text style={[styles.fontStyle, { fontWeight: 'bold', color: Colors.CYAN, paddingHorizontal: DEFAUTL_SPACE / 2 }]}>{houreLeft}</Text>
                         <Text style={[styles.fontStyle, { fontWeight: 'bold' }]}>Hours Left</Text>
                     </View>
                     <View style={{ width: 300, marginVertical: DEFAUTL_SPACE / 2 }}>

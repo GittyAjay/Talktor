@@ -10,11 +10,14 @@ import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import Carousel from 'react-native-snap-carousel';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { TextInput, TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
-
+import { useNavigation } from '@react-navigation/native';
 
 const Slider = () => {
 
     const { ICON_SIZE, BUTTON_HEIGHT, DEFAUTL_SPACE, FONT_SMALL, FONT_LARGE, FONT_MID, HEIGHT, WIDTH, BORDER_RADIUS_CIRCULAR, INLINE_GAP, BORDER_RADIUS, BORDER_WIDTH } = Numericals();
+    const navigation = useNavigation();
+    console.log(navigation);
+
     const Slides = [
         {
             title: "Looking for your desire Specialist doctor",
@@ -44,7 +47,7 @@ const Slider = () => {
 
     const renderItem = ({ item, index }: { item: any, index: number }) => {
         return (
-            <View style={{
+            <Pressable style={({ pressed }) => [{
                 flex: 1,
                 flexDirection: 'row',
                 justifyContent: 'center',
@@ -52,7 +55,11 @@ const Slider = () => {
                 height: 170,
                 backgroundColor: Colors.PRIMARY,
                 borderRadius: BORDER_RADIUS,
-            }}>
+                transform: [{ scale: pressed ? 0.96 : 1 }]
+            }]}
+                onPress={() => navigation.navigate('DoctorIntro')
+                }
+            >
                 <View style={{ flexDirection: 'column', justifyContent: 'space-evenly', marginBottom: 25, paddingLeft: 40 }}>
                     <Text style={{ fontSize: FONT_MID, color: Colors.WHITE, width: 200 }}>{item.title}</Text>
                     <View style={{ borderLeftColor: Colors.CYAN, borderLeftWidth: 2, paddingHorizontal: DEFAUTL_SPACE, marginTop: INLINE_GAP, borderStyle: 'solid' }}>
@@ -64,7 +71,7 @@ const Slider = () => {
                 <View >
                     <Image source={item.url} resizeMode="contain" />
                 </View>
-            </View>
+            </Pressable>
         )
     }
     return (

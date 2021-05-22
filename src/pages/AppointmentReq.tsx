@@ -18,7 +18,7 @@ const AppointmentReq = (props: { navigation: any }) => {
     const [activeBookingFee, setActiveBookingFee] = useState('2000');
     const headerComponnets = () =>
         <View>
-            <Text style={{ fontSize: moderateScale(FONT_MID), fontWeight: 'bold' }}>AppointmentReq</Text>
+            <Text style={{ fontSize: moderateScale(FONT_MID), fontWeight: 'bold' }}>Appointment</Text>
         </View>
     return (
         <>

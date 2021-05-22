@@ -12,7 +12,7 @@ import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import auth from '@react-native-firebase/auth';
 export default function Dashboard(props: { navigation: { push: Function, navigate: Function } }) {
 
-    const { LOGIN_VIEW_HEIGHT, ICON_SIZE, BUTTON_HEIGHT, DEFAUTL_SPACE, FONT_SMALL, FONT_LARGE, FONT_MID, HEIGHT, WIDTH, BORDER_RADIUS_CIRCULAR, INLINE_GAP, BORDER_RADIUS, BORDER_WIDTH } = Numericals();
+    const { LOGIN_VIEW_HEIGHT, COMMON_BUTTON_HEIGHT, ICON_SIZE, BUTTON_HEIGHT, DEFAUTL_SPACE, FONT_SMALL, FONT_LARGE, FONT_MID, HEIGHT, WIDTH, BORDER_RADIUS_CIRCULAR, INLINE_GAP, BORDER_RADIUS, BORDER_WIDTH } = Numericals();
     const animaValue = useRef(new Animated.Value(HEIGHT)).current;
     const [mobileNo, setMobileNo] = useState('');
     const [loginHeading, setloginHeading] = useState("Let's get started! Enter your mobile number");
@@ -89,7 +89,7 @@ export default function Dashboard(props: { navigation: { push: Function, navigat
                                 onChangeText={user => { setMobileNo(user); }} />
                         </View>
                     </View>
-                    <Pressable style={[{ backgroundColor: Colors.PRIMARY, justifyContent: 'center', alignItems: 'center', height: BUTTON_HEIGHT, flexDirection: 'row' }]} onPress={() => {
+                    <Pressable style={({ pressed }) => [{ paddingVertical: COMMON_BUTTON_HEIGHT, backgroundColor: Colors.PRIMARY, borderRadius: BORDER_RADIUS, justifyContent: 'center', alignItems: 'center', transform: [{ scale: pressed ? 0.95 : 1 }] }]} onPress={() => {
                         signInWithPhoneNumber()
                     }}>
                         <Text style={{ fontFamily: 'Museo700-Regular', fontSize: moderateScale(FONT_MID), color: Colors.WHITE }}>Submit</Text>

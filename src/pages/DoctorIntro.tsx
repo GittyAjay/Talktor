@@ -7,6 +7,7 @@ import { Colors } from '../constants/color';
 import IIcon from 'react-native-vector-icons/Ionicons'
 import MIcon from 'react-native-vector-icons/MaterialIcons'
 import AIcon from 'react-native-vector-icons/AntDesign'
+import LinearGradient from 'react-native-linear-gradient'
 
 
 const DoctorIntro = (props: { navigation: any }) => {
@@ -19,7 +20,10 @@ const DoctorIntro = (props: { navigation: any }) => {
         <>
             <Header template={headerComponnets} />
             <View style={[style.container]}>
-                <View style={[style.heroImg, { backgroundColor: Colors.WHITE }]}>
+                <LinearGradient
+                    start={{ x: 1, y: 0 }}
+                    end={{ x: 1, y: 1 }}
+                    colors={[Colors.WHITE, Colors.HOME_BCK]} style={[style.heroImg, { backgroundColor: Colors.WHITE }]}>
                     <Image source={require('../assets/images/doctor3.png')} />
                     <View style={[style.ActionButtons]}>
                         <Pressable style={({ pressed }) => [{ paddingVertical: SMALL_BUTTON_HEIGHT, backgroundColor: Colors.CYAN, borderRadius: BORDER_RADIUS, justifyContent: 'center', alignItems: 'center', transform: [{ scale: pressed ? 0.95 : 1 }], flexDirection: 'row', paddingHorizontal: DEFAUTL_SPACE, marginRight: DEFAUTL_SPACE }]} >
@@ -35,7 +39,7 @@ const DoctorIntro = (props: { navigation: any }) => {
                             <Text style={[style.fontStyle, { fontSize: FONT_SMALL, color: Colors.WHITE, paddingHorizontal: 4, fontWeight: 'bold' }]}>Message</Text>
                         </Pressable>
                     </View>
-                </View>
+                </LinearGradient>
                 <View style={[style.main, { paddingHorizontal: INLINE_GAP, paddingTop: INLINE_GAP }]}>
                     <View style={[style.aboutHeader, {}]}>
                         <Text style={[style.fontStyle, { fontSize: FONT_MID }]}>Medicine and Heart Specialist</Text>
