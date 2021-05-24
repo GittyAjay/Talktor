@@ -17,10 +17,10 @@ import Slider from '../components/HomeSlider'
 export default function Home(props: { navigation: any }) {
     const { WIDTH, HEIGHT, FONT_SMALL, BORDER_RADIUS_CIRCULAR, FONT_ELARGE, FONT_MID, FONT_LARGE, BORDER_RADIUS, ICON_SIZE, INLINE_GAP, DEFAUTL_SPACE } = Numericals();
     return (
-        <SafeAreaView style={{ marginTop: INLINE_GAP }}>
+        <SafeAreaView >
             <StatusBar color={Colors.HOME_BCK} />
             <ScrollView >
-                <View style={[styles.container, { backgroundColor: Colors.HOME_BCK }]}>
+                <View style={[styles.container, { backgroundColor: Colors.HOME_BCK, paddingTop: INLINE_GAP }]}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: INLINE_GAP }}>
                         <View style={{ flexDirection: 'column' }}>
                             <Text style={{ fontSize: moderateScale(FONT_MID) }}>Find Your</Text>

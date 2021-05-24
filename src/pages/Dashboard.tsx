@@ -10,6 +10,7 @@ import Carousel from 'react-native-snap-carousel';
 import Slider from '../components/Slider';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import auth from '@react-native-firebase/auth';
+import Spinner from 'react-native-loading-spinner-overlay';
 export default function Dashboard(props: { navigation: { push: Function, navigate: Function } }) {
 
     const { LOGIN_VIEW_HEIGHT, COMMON_BUTTON_HEIGHT, ICON_SIZE, BUTTON_HEIGHT, DEFAUTL_SPACE, FONT_SMALL, FONT_LARGE, FONT_MID, HEIGHT, WIDTH, BORDER_RADIUS_CIRCULAR, INLINE_GAP, BORDER_RADIUS, BORDER_WIDTH } = Numericals();
@@ -17,8 +18,9 @@ export default function Dashboard(props: { navigation: { push: Function, navigat
     const [mobileNo, setMobileNo] = useState('');
     const [loginHeading, setloginHeading] = useState("Let's get started! Enter your mobile number");
     const [backIconStatus, setbackIconStatus] = useState(false);
-    const [confirm, setConfirm] = useState(null);
     const [code, setCode] = useState('');
+    const [confirm, setConfirm] = useState(null);
+    const [spinner, setSpinner] = useState(false);
 
     function interpolateAnima() {
         setbackIconStatus(true);
@@ -30,16 +32,12 @@ export default function Dashboard(props: { navigation: { push: Function, navigat
     }
 
     async function signInWithPhoneNumber() {
-        // console.log('sign in function');
-
-        // const confirmation = await auth().signInWithPhoneNumber('+91' + mobileNo);
-        // setConfirm(confirmation);
-        // console.log(confirmation);
-
-        // if (confirm) {
-        //     props.navigation.push('Otp', { confirmation: confirmation });
-        // }
-        props.navigation.push('Otp');
+        setSpinner(true);
+        const confirmation = await auth().signInWithPhoneNumber('+91' + mobileNo)
+        if (confirmation) {
+            setSpinner(false)
+            props.navigation.push('Otp', { confirm: confirmation });
+        }
     }
 
     useEffect(() => {
@@ -65,6 +63,10 @@ export default function Dashboard(props: { navigation: { push: Function, navigat
     return (
         <View style={styles.container}>
             <StatusBar color={Colors.PRIMARY} />
+            <Spinner
+                visible={spinner}
+                textStyle={styles.spinnerTextStyle}
+            />
             <Text style={{ margin: moderateScale(INLINE_GAP), fontSize: scale(FONT_LARGE), fontFamily: 'Museo700-Regular', color: Colors.WHITE }}>Talktor</Text>
             <View style={{ marginBottom: moderateScale(LOGIN_VIEW_HEIGHT - 50) }}>
                 <Slider />
@@ -81,11 +83,12 @@ export default function Dashboard(props: { navigation: { push: Function, navigat
                             <Text style={{ fontFamily: 'Museo700-Regular', fontSize: scale(FONT_MID) }} >+91</Text>
                             <AIcon name="down" size={ICON_SIZE} />
                             <TextInput placeholder="Mobile number"
-                                style={{ fontFamily: 'Museo700-Regular', fontSize: scale(FONT_MID), flex: 1 }}
+                                style={{ fontFamily: 'Museo700-Regular', fontSize: scale(FONT_MID), flex: 1, color: Colors.BLACK }}
                                 maxLength={10}
                                 onPressIn={() => { interpolateAnima(); }}
                                 keyboardType="phone-pad"
                                 focusable={true}
+                                placeholderTextColor={Colors.GREY.LIGHT}
                                 onChangeText={user => { setMobileNo(user); }} />
                         </View>
                     </View>
@@ -103,6 +106,9 @@ export default function Dashboard(props: { navigation: { push: Function, navigat
 const styles = StyleSheet.create({
     container: {
         flex: 1, alignItems: 'stretch', justifyContent: 'space-between', flexDirection: 'column', backgroundColor: Colors.PRIMARY
+    },
+    spinnerTextStyle: {
+        color: '#FFF'
     },
 });
 

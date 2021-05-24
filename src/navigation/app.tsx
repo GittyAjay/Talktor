@@ -27,10 +27,13 @@ import Payment from '../pages/Payment';
 import { useNavigation } from '@react-navigation/native'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { scale, moderateScale } from 'react-native-size-matters';
+import auth from '@react-native-firebase/auth';
 const Drawer = createDrawerNavigator();
 console.log(useNavigation);
 
 const { Navigator, Screen } = createStackNavigator();
+var currentUser = auth().currentUser;
+// console.log("current user", currentUser);
 
 function HomeNav() {
 
@@ -157,18 +160,28 @@ function TopNav() {
 }
 
 const HomeNavigator = () => (
-    <Navigator headerMode='none'>
-        <Screen name='Splash' component={Splash} />
-        <Screen name='Dashboard' component={Dashboard} />
-        <Screen name='Otp' component={Otp} />
-        <Screen name='Home' component={HomeNav} />
-        <Screen name='Search' component={Search} />
-        <Screen name='SearchResult' component={SearchResult} />
-        <Screen name='DoctorIntro' component={DoctorIntro} />
-        <Screen name='AppointmentReq' component={AppointmentReq} />
-        <Screen name='Payment' component={Payment} />
-        <Screen name='AppointmentRes' component={AppointmentRes} />
-    </Navigator>
+    currentUser ?
+        <Navigator headerMode='none'>
+            <Screen name='Home' component={HomeNav} />
+            <Screen name='Search' component={Search} />
+            <Screen name='SearchResult' component={SearchResult} />
+            <Screen name='DoctorIntro' component={DoctorIntro} />
+            <Screen name='AppointmentReq' component={AppointmentReq} />
+            <Screen name='Payment' component={Payment} />
+            <Screen name='AppointmentRes' component={AppointmentRes} />
+        </Navigator>
+        : <Navigator headerMode='none'>
+            <Screen name='Splash' component={Splash} />
+            <Screen name='Dashboard' component={Dashboard} />
+            <Screen name='Otp' component={Otp} />
+            <Screen name='Home' component={HomeNav} />
+            <Screen name='Search' component={Search} />
+            <Screen name='SearchResult' component={SearchResult} />
+            <Screen name='DoctorIntro' component={DoctorIntro} />
+            <Screen name='AppointmentReq' component={AppointmentReq} />
+            <Screen name='Payment' component={Payment} />
+            <Screen name='AppointmentRes' component={AppointmentRes} />
+        </Navigator>
 );
 
 export const AppNavigator = () => (

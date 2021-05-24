@@ -125,7 +125,7 @@ const Payment = (props: { navigation: any }) => {
                             <Text style={[styles.fontStyle, { fontWeight: 'bold', fontSize: moderateScale(FONT_LARGE) }]}>Total Price</Text>
                             <Text style={[styles.fontStyle, { fontWeight: 'bold', fontSize: moderateScale(FONT_LARGE) }]}>₹2000,0</Text>
                         </View>
-                        <Pressable style={({ pressed }) => [{ paddingVertical: moderateScale(COMMON_BUTTON_HEIGHT), backgroundColor: Colors.PRIMARY, borderRadius: BORDER_RADIUS, justifyContent: 'center', alignItems: 'center', marginVertical: INLINE_GAP, transform: [{ scale: pressed ? 0.95 : 1 }] }]} onPress={() => props.navigation.push('AppointmentRes')}>
+                        <Pressable style={({ pressed }) => [{ marginTop: DEFAUTL_SPACE, paddingVertical: moderateScale(COMMON_BUTTON_HEIGHT), backgroundColor: Colors.PRIMARY, borderRadius: BORDER_RADIUS, justifyContent: 'center', alignItems: 'center', transform: [{ scale: pressed ? 0.95 : 1 }] }]} onPress={() => props.navigation.push('AppointmentRes')}>
                             <Text style={[styles.fontStyle, { fontSize: moderateScale(FONT_MID), color: Colors.WHITE, fontWeight: 'bold' }]}>Confirm</Text>
                         </Pressable>
                     </View>
@@ -153,9 +153,7 @@ const styles = StyleSheet.create({
 
     },
     form: {
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'flex-start'
+        flexDirection: 'column'
     }
 })
 export default Payment
