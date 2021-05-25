@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View, Text, StyleSheet, TextInput, Pressable, SafeAreaView } from 'react-native'
 import { Numericals } from '../constants/numerical';
 import { Colors } from '../constants/color';
@@ -13,9 +13,21 @@ import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { scale, moderateScale } from 'react-native-size-matters';
 import { color } from 'react-native-reanimated';
 import Slider from '../components/HomeSlider'
-
+import { useSelector, useDispatch } from 'react-redux'
 export default function Home(props: { navigation: any }) {
     const { WIDTH, HEIGHT, FONT_SMALL, BORDER_RADIUS_CIRCULAR, FONT_ELARGE, FONT_MID, FONT_LARGE, BORDER_RADIUS, ICON_SIZE, INLINE_GAP, DEFAUTL_SPACE } = Numericals();
+    const getDoctors = useDispatch();
+    let doctors = useSelector(state => state.doctors);
+    useEffect(() => {
+        getDoctors({ type: 'DOCTORS' })
+    }, [])
+    const getRating = (no: number) => {
+        let content = [];
+        for (let i = 0; i < no; i++) {
+            content.push(<AIcon name="star" size={ICON_SIZE - DEFAUTL_SPACE} color={Colors.STAR_COLOR} key={i} />);
+        }
+        return content;
+    };
     return (
         <SafeAreaView >
             <StatusBar color={Colors.HOME_BCK} />
@@ -64,83 +76,45 @@ export default function Home(props: { navigation: any }) {
                         <Text style={{ fontFamily: "Museo700-Regular", fontSize: FONT_LARGE }}>Availble Doctors</Text>
                     </View>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{ marginHorizontal: INLINE_GAP }}>
-
-                        <View style={{ flex: 1, justifyContent: 'space-between' }}>
-                            <Pressable style={({ pressed }) => [{
-                                width: 290,
-                                height: 220,
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                                marginRight: DEFAUTL_SPACE,
-                                backgroundColor: Colors.WHITE,
-                                paddingHorizontal: DEFAUTL_SPACE,
-                                marginVertical: DEFAUTL_SPACE,
-                                borderRadius: BORDER_RADIUS,
-                                transform: [{ scale: pressed ? 0.96 : 1 }]
-                            }]}
-                                onPress={() => props.navigation.push('DoctorIntro')}
-                            >
-                                <View style={{ flex: 1, justifyContent: 'space-between', padding: DEFAUTL_SPACE }}>
-                                    <Text style={{ fontSize: FONT_MID, color: Colors.BLACK, }}>Maria daboria</Text>
-                                    <Text style={{ fontSize: FONT_SMALL, color: Colors.BLACK, }}>Brain Specialist</Text>
-                                    <View style={{ flexDirection: 'row', justifyContent: 'flex-start', marginVertical: DEFAUTL_SPACE }}>
-                                        <EIcon name="star" size={ICON_SIZE - 5} color={Colors.STAR_COLOR} />
-                                        <EIcon name="star" size={ICON_SIZE - 5} color={Colors.STAR_COLOR} />
-                                        <EIcon name="star" size={ICON_SIZE - 5} color={Colors.STAR_COLOR} />
-                                        <EIcon name="star" size={ICON_SIZE - 5} color={Colors.STAR_COLOR} />
+                        {doctors.map((value: any, id: any) =>
+                            <View style={{ flex: 1, justifyContent: 'space-between' }}>
+                                <Pressable
+                                    key={id}
+                                    style={({ pressed }) => [{
+                                        width: 290,
+                                        height: 220,
+                                        flexDirection: 'row',
+                                        alignItems: 'center',
+                                        marginRight: DEFAUTL_SPACE,
+                                        backgroundColor: Colors.WHITE,
+                                        paddingHorizontal: DEFAUTL_SPACE,
+                                        marginVertical: DEFAUTL_SPACE,
+                                        borderRadius: BORDER_RADIUS,
+                                        transform: [{ scale: pressed ? 0.96 : 1 }]
+                                    }]}
+                                    onPress={() => props.navigation.push('DoctorIntro', { item: value })}
+                                >
+                                    <View style={{ flex: 1, justifyContent: 'space-between', padding: DEFAUTL_SPACE }}>
+                                        <Text style={{ fontSize: FONT_MID, color: Colors.BLACK, }}>{value.name}</Text>
+                                        <Text style={{ fontSize: FONT_SMALL, color: Colors.BLACK, }}>{value.specialization}</Text>
+                                        <View style={{ flexDirection: 'row', justifyContent: 'flex-start', marginVertical: DEFAUTL_SPACE }}>
+                                            {getRating(value.rating)}
+                                        </View>
+                                        <View style={{ flexDirection: 'column' }}>
+                                            <Text style={{ fontSize: FONT_SMALL, color: Colors.GREY.SIMPLE }}>Experience</Text>
+                                            <Text style={{ fontSize: FONT_SMALL, color: Colors.BLACK, fontWeight: 'bold' }}>{value.experience} year</Text>
+                                        </View>
+                                        <View style={{ flexDirection: 'column' }}>
+                                            <Text style={{ fontSize: FONT_SMALL, color: Colors.GREY.SIMPLE }}>Patients</Text>
+                                            <Text style={{ fontSize: FONT_SMALL, color: Colors.BLACK, fontWeight: 'bold' }}>{value.patients}</Text>
+                                        </View>
                                     </View>
-                                    <View style={{ flexDirection: 'column' }}>
-                                        <Text style={{ fontSize: FONT_SMALL, color: Colors.GREY.SIMPLE }}>Experience</Text>
-                                        <Text style={{ fontSize: FONT_SMALL, color: Colors.BLACK, fontWeight: 'bold' }}>8 year</Text>
+                                    <View>
+                                        <Image style={{ width: 130, height: 130 }} source={{ uri: value.url }} />
                                     </View>
-                                    <View style={{ flexDirection: 'column' }}>
-                                        <Text style={{ fontSize: FONT_SMALL, color: Colors.GREY.SIMPLE }}>Patients</Text>
-                                        <Text style={{ fontSize: FONT_SMALL, color: Colors.BLACK, fontWeight: 'bold' }}>1.08k</Text>
-                                    </View>
-                                </View>
-                                <View>
-                                    <Image source={require('../assets/images/doctor.png')} />
-                                </View>
-                            </Pressable>
-                        </View>
-                        <View style={{ flex: 1, justifyContent: 'space-between' }}>
-                            <Pressable style={({ pressed }) => [{
-                                width: 290,
-                                height: 220,
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                                marginRight: DEFAUTL_SPACE,
-                                backgroundColor: Colors.WHITE,
-                                paddingHorizontal: DEFAUTL_SPACE,
-                                marginVertical: DEFAUTL_SPACE,
-                                borderRadius: BORDER_RADIUS,
-                                transform: [{ scale: pressed ? 0.96 : 1 }]
-                            }]}
-                                onPress={() => props.navigation.push('DoctorIntro')}
-                            >
-                                <View style={{ flex: 1, justifyContent: 'space-between', padding: DEFAUTL_SPACE }}>
-                                    <Text style={{ fontSize: FONT_MID, color: Colors.BLACK, }}>Sanboq erotica</Text>
-                                    <Text style={{ fontSize: FONT_SMALL, color: Colors.BLACK, }}>Heart Specialist</Text>
-                                    <View style={{ flexDirection: 'row', justifyContent: 'flex-start', marginVertical: DEFAUTL_SPACE }}>
-                                        <EIcon name="star" size={ICON_SIZE - 5} color={Colors.STAR_COLOR} />
-                                        <EIcon name="star" size={ICON_SIZE - 5} color={Colors.STAR_COLOR} />
-                                        <EIcon name="star" size={ICON_SIZE - 5} color={Colors.STAR_COLOR} />
-                                        <EIcon name="star" size={ICON_SIZE - 5} color={Colors.STAR_COLOR} />
-                                    </View>
-                                    <View style={{ flexDirection: 'column' }}>
-                                        <Text style={{ fontSize: FONT_SMALL, color: Colors.GREY.SIMPLE }}>Experience</Text>
-                                        <Text style={{ fontSize: FONT_SMALL, color: Colors.BLACK, fontWeight: 'bold' }}>8 year</Text>
-                                    </View>
-                                    <View style={{ flexDirection: 'column' }}>
-                                        <Text style={{ fontSize: FONT_SMALL, color: Colors.GREY.SIMPLE }}>Patients</Text>
-                                        <Text style={{ fontSize: FONT_SMALL, color: Colors.BLACK, fontWeight: 'bold' }}>1.08k</Text>
-                                    </View>
-                                </View>
-                                <View >
-                                    <Image source={require('../assets/images/doctor1.png')} />
-                                </View>
-                            </Pressable>
-                        </View>
+                                </Pressable>
+                            </View>
+                        )}
                     </ScrollView>
                 </View>
             </ScrollView>

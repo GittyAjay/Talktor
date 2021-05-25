@@ -45,15 +45,15 @@ const Search = (props: { navigation: any }) => {
                     </View>
                     <View style={[styls.inputBox, { paddingVertical: INLINE_GAP }]}>
                         <View style={{ backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, paddingVertical: TEXT_INPUT_HEIGHT, paddingHorizontal: DEFAUTL_SPACE, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: DEFAUTL_SPACE }} >
-                            <TextInput placeholder="Select Area" />
+                            <TextInput placeholder="Select Area" placeholderTextColor={Colors.GREY.LIGHT} style={{ color: Colors.BLACK, flex: 1 }} />
                             <IIcon name="location" size={ICON_SIZE} color={Colors.GREY.LIGHT} />
                         </View>
                         <View style={{ backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, paddingVertical: TEXT_INPUT_HEIGHT, paddingHorizontal: DEFAUTL_SPACE, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: DEFAUTL_SPACE }} >
-                            <TextInput placeholder="Doctor,specialist" />
+                            <TextInput placeholder="Doctor,specialist" placeholderTextColor={Colors.GREY.LIGHT} style={{ color: Colors.BLACK, flex: 1 }} />
                             <MIcon name="stethoscope" size={ICON_SIZE} color={Colors.GREY.LIGHT} />
                         </View>
                         <View style={{ backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, paddingVertical: TEXT_INPUT_HEIGHT, paddingHorizontal: DEFAUTL_SPACE, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }} >
-                            <TextInput placeholder="Select Date" />
+                            <TextInput placeholder="Select Date" placeholderTextColor={Colors.GREY.LIGHT} style={{ color: Colors.BLACK, flex: 1 }} />
                             <MATIcon name="date-range" size={ICON_SIZE} color={Colors.GREY.LIGHT} />
                         </View>
                     </View>

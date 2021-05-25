@@ -1,5 +1,5 @@
 import { Colors } from '../constants/color'
-import React, { useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import StatusBar from '../styles/statusBar'
 import LottieView from 'lottie-react-native'
 import { Numericals } from '../constants/numerical';
@@ -11,39 +11,18 @@ import Carousel from 'react-native-snap-carousel';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { TextInput, TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
+import { store } from '../store/store';
+import { doctorsReducer } from '../store/reducers';
+import { useSelector, useDispatch } from 'react-redux';
 
-const Slider = () => {
-
+function Slider() {
     const { ICON_SIZE, BUTTON_HEIGHT, DEFAUTL_SPACE, FONT_SMALL, FONT_LARGE, FONT_MID, HEIGHT, WIDTH, BORDER_RADIUS_CIRCULAR, INLINE_GAP, BORDER_RADIUS, BORDER_WIDTH } = Numericals();
+    const getDoctors = useDispatch();
     const navigation = useNavigation();
-    console.log(navigation);
-
-    const Slides = [
-        {
-            title: "Looking for your desire Specialist doctor",
-            doctorName: 'Albert Khan',
-            specialization: 'Heart Dieases',
-            clinic: 'Good Health Clinic',
-            url: require("../assets/images/doctor.png"),
-            index: 1
-        },
-        {
-            title: "Instant Help",
-            doctorName: 'Sanroz dubey',
-            specialization: 'Sex problem',
-            clinic: 'Kamdev Health Clinic',
-            url: require("../assets/images/doctor1.png"),
-            index: 2
-        },
-        {
-            title: "Easily Accesable",
-            doctorName: 'Tokyo kappor',
-            clinic: '24*7 helth checkup',
-            specialization: 'Covid problem',
-            url: require("../assets/images/doctor2.png"),
-            index: 3
-        },
-    ];
+    let doctors = useSelector(state => state.doctors);;
+    useEffect(() => {
+        getDoctors({ type: 'DOCTORS' })
+    }, [])
 
     const renderItem = ({ item, index }: { item: any, index: number }) => {
         return (
@@ -57,19 +36,25 @@ const Slider = () => {
                 borderRadius: BORDER_RADIUS,
                 transform: [{ scale: pressed ? 0.96 : 1 }]
             }]}
-                onPress={() => navigation.navigate('DoctorIntro')
+                onPress={() => navigation.navigate('DoctorIntro', { item })
                 }
             >
+
                 <View style={{ flexDirection: 'column', justifyContent: 'space-evenly', marginBottom: 25, paddingLeft: 40 }}>
                     <Text style={{ fontSize: FONT_MID, color: Colors.WHITE, width: 200 }}>{item.title}</Text>
                     <View style={{ borderLeftColor: Colors.CYAN, borderLeftWidth: 2, paddingHorizontal: DEFAUTL_SPACE, marginTop: INLINE_GAP, borderStyle: 'solid' }}>
-                        <Text style={{ fontSize: FONT_SMALL, color: Colors.WHITE, width: 200 }}>{item.doctorName}</Text>
+                        <Text style={{ fontSize: FONT_SMALL, color: Colors.WHITE, width: 200 }}>{item.name}</Text>
                         <Text style={{ fontSize: FONT_SMALL, color: Colors.WHITE, width: 200 }}>{item.specialization}</Text>
                         <Text style={{ fontSize: FONT_SMALL, color: Colors.WHITE, width: 200 }}>{item.clinic}</Text>
                     </View>
                 </View>
                 <View >
-                    <Image source={item.url} resizeMode="contain" />
+                    <Image
+                        style={{ width: 100, height: 150 }}
+                        source={{
+                            uri:
+                                item.url
+                        }} />
                 </View>
             </Pressable>
         )
@@ -79,7 +64,7 @@ const Slider = () => {
             <View>
                 <Carousel
                     layout={'default'}
-                    data={Slides}
+                    data={doctors}
                     firstItem={1}
                     renderItem={renderItem}
                     sliderWidth={430}
@@ -97,4 +82,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Museo700-Regular'
     },
 })
+
+
 
