@@ -5,13 +5,14 @@ import { Numericals } from '../constants/numerical'
 import { Colors } from '../constants/color';
 import Header from '../header/header'
 
-function AppointmentResponse() {
+function AppointmentResponse(props: { navigation: any }) {
     const { COMMON_BUTTON_HEIGHT, FONT_ELARGE, FONT_SMALL, FONT_MID, WIDTH, FONT_LARGE, SMALL_BUTTON_HEIGHT, BUTTON_HEIGHT, SMALL_DOT_SIZE, BORDER_RADIUS, ICON_SIZE, INLINE_GAP, DEFAUTL_SPACE, TEXT_INPUT_HEIGHT } = Numericals();
-    const [date, setDate] = useState('03 Feb 2021');
-    const [time, setTime] = useState('02:20 Pm');
+    const [date, setDate] = useState(`${props.route.params.payload.activeDay}  ${props.route.params.payload.activeMonth} 2021`);
+    const [time, setTime] = useState(`${props.route.params.payload.activeSlot}`);
     const [doctor, setDoctor] = useState('Dr. Ripa Diwedi');
     const [appointmentType, setAppointmentType] = useState('Online');
     const [houreLeft, setHoureLeft] = useState('5:30');
+    console.log("appointment response", props.route.params.payload);
     const headerComponnets = () =>
         <View>
             <Text style={{ fontSize: moderateScale(FONT_MID), fontWeight: 'bold' }}>Appointment</Text>

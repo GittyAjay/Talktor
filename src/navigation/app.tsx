@@ -4,7 +4,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../pages/Home';
 import Dashboard from '../pages/Dashboard';
 import Splash from '../pages/Splash';
-import Otp from '../pages/Otp';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Doctors from '../pages/Doctors';
 import { Animated, Easing, View, Text, StyleSheet } from 'react-native';
@@ -29,11 +28,9 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { scale, moderateScale } from 'react-native-size-matters';
 import auth from '@react-native-firebase/auth';
 const Drawer = createDrawerNavigator();
-console.log(useNavigation);
-
+import firebase from 'firebase'
 const { Navigator, Screen } = createStackNavigator();
 var currentUser = auth().currentUser;
-// console.log("current user", currentUser);
 
 function HomeNav() {
 
@@ -173,7 +170,6 @@ const HomeNavigator = () => (
         : <Navigator headerMode='none'>
             <Screen name='Splash' component={Splash} />
             <Screen name='Dashboard' component={Dashboard} />
-            <Screen name='Otp' component={Otp} />
             <Screen name='Home' component={HomeNav} />
             <Screen name='Search' component={Search} />
             <Screen name='SearchResult' component={SearchResult} />

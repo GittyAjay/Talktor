@@ -14,5 +14,6 @@ export const Colors = {
     HOME_BCK: '#EBECF0',
     CYAN: '#4DC6EB',
     STAR_COLOR: '#FF8100',
-    ORANGE: '#FF7F00'
+    ORANGE: '#FF7F00',
+    YELLOW: '#FFA500'
 }

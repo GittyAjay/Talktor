@@ -11,15 +11,12 @@ import Carousel from 'react-native-snap-carousel';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { TextInput, TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
-import { store } from '../store/store';
-import { doctorsReducer } from '../store/reducers';
 import { useSelector, useDispatch } from 'react-redux';
 
-function Slider() {
+function Slider({ doctors }) {
     const { ICON_SIZE, BUTTON_HEIGHT, DEFAUTL_SPACE, FONT_SMALL, FONT_LARGE, FONT_MID, HEIGHT, WIDTH, BORDER_RADIUS_CIRCULAR, INLINE_GAP, BORDER_RADIUS, BORDER_WIDTH } = Numericals();
     const getDoctors = useDispatch();
     const navigation = useNavigation();
-    let doctors = useSelector(state => state.doctors);;
     useEffect(() => {
         getDoctors({ type: 'DOCTORS' })
     }, [])

@@ -7,12 +7,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:532901670586:android:7c23aa65e40cd28d299c83",
+        "mobilesdk_app_id": "1:532901670586:android:ffe8c02e3ace59a7299c83",
         "android_client_info": {
           "package_name": "com.talktor"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "532901670586-n9q1f6vkrtrs5r35idoeacb5dkg4qcem.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.talktor",
+            "certificate_hash": "4b66f186c3b6b8fa0b7846a693e497ecd9f90462"
+          }
+        },
         {
           "client_id": "532901670586-edvrfvlhu2u5cq97793r9ec5vbe7l9kr.apps.googleusercontent.com",
           "client_type": 3

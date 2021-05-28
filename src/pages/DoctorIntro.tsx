@@ -66,7 +66,7 @@ const DoctorIntro = (props: { navigation: any, route: { params: { item: {} } } }
                     <View style={[style.aboutComponent, { paddingHorizontal: INLINE_GAP }]}>
                         <View style={[style.aboutElement]}>
                             <Text style={[style.fontStyle, { color: Colors.GREY.SIMPLE }]}>Patient</Text>
-                            <Text style={[style.fontStyle, { fontSize: FONT_MID, color: Colors.BLACK }]}>{doctorDetails.patients}</Text>
+                            <Text style={[style.fontStyle, { fontSize: FONT_MID, color: Colors.BLACK }]}>{doctorDetails.patients < 1000 ? doctorDetails.patients : doctorDetails.patients / 1000 + "k"}</Text>
                         </View>
                         <View style={[style.aboutElement]}>
                             <Text style={[style.fontStyle, { color: Colors.GREY.SIMPLE }]}>Experience</Text>
@@ -74,7 +74,7 @@ const DoctorIntro = (props: { navigation: any, route: { params: { item: {} } } }
                         </View>
                         <View style={[style.aboutElement]}>
                             <Text style={[style.fontStyle, { color: Colors.GREY.SIMPLE }]}>Review</Text>
-                            <Text style={[style.fontStyle, { fontSize: FONT_MID, color: Colors.BLACK }]}>{doctorDetails.review}</Text>
+                            <Text style={[style.fontStyle, { fontSize: FONT_MID, color: Colors.BLACK }]}>{doctorDetails.review < 1000 ? doctorDetails.review : doctorDetails.review / 1000 + "k"}</Text>
                         </View>
                     </View>
                     <Pressable style={({ pressed }) => [{ paddingVertical: COMMON_BUTTON_HEIGHT, marginVertical: INLINE_GAP, backgroundColor: Colors.PRIMARY, borderRadius: BORDER_RADIUS, justifyContent: 'center', alignItems: 'center', transform: [{ scale: pressed ? 0.95 : 1 }] }]} onPress={() => props.navigation.push('AppointmentReq')}>
