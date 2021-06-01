@@ -19,7 +19,6 @@ export default function doctorsReducer(state = initialState, action: any) {
         case 'CLEAR_DEFAULT':
             return {
                 ...state,
-                doctors: [],
                 appointments: [],
             }
         default:

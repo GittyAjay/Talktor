@@ -19,6 +19,7 @@ function Notification(props: { navigation: any, appointments: any }) {
     const { COMMON_BUTTON_HEIGHT, FONT_ELARGE, FONT_SMALL, FONT_MID, FONT_LARGE, SMALL_BUTTON_HEIGHT, BUTTON_HEIGHT, BORDER_RADIUS, ICON_SIZE, INLINE_GAP, DEFAUTL_SPACE, TEXT_INPUT_HEIGHT } = Numericals();
     const [appointment, setAppointment] = useState([]);
     const setUserDispatch = useDispatch();
+    const clearDefault = useDispatch();
 
     const convertTime12to24 = (time12h) => {
         const [time, modifier] = time12h.split(' ');
@@ -36,17 +37,30 @@ function Notification(props: { navigation: any, appointments: any }) {
         return `${hours}:${minutes}`;
     }
     useEffect(() => {
-        const uid = auth().currentUser.uid;
-        firestore()
-            .collection('Users')
-            .doc(uid)
-            .collection('appointments')
-            .get()
-            .then(documentSnapshot => {
-                documentSnapshot.docs.map((value, id) => {
-                    setUserDispatch({ type: 'APPOINTMENTS_FETCH', payload: value })
+        props.navigation.addListener('focus', () => {
+            const uid = auth().currentUser.uid;
+            firestore()
+                .collection('Users')
+                .doc(uid)
+                .collection('appointments')
+                .onSnapshot(documentSnapshot => {
+                    clearDefault({ type: 'CLEAR_DEFAULT' })
+                    firestore()
+                        .collection('Users')
+                        .doc(uid)
+                        .collection('appointments')
+                        .get()
+                        .then(documentSnapshot => {
+                            documentSnapshot.docs.map((value, id) => {
+                                setUserDispatch({ type: 'APPOINTMENTS_FETCH', payload: value })
+                            })
+                        }).then(res => {
+                            setAppointment(props.appointments); console.log("updated")
+                        })
                 })
-            });
+        });
+
+
 
     }, []);
     const HeaderComponnets = () =>

@@ -22,17 +22,20 @@ function Home(props: { navigation: any, Doctors: any, users: any }) {
     const setDoctorsDispatch = useDispatch();
 
     useEffect(() => {
-        props.navigation.addListener('focus', () => {
-            firestore()
-                .collection('Doctors')
-                .get()
-                .then(querySnapshot => {
-                    querySnapshot.forEach(documentSnapshot => {
-                        const record: {} = documentSnapshot.data();
-                        setDoctorsDispatch({ type: 'DOCTOR_FETCH', payload: record })
-                    });
+        firestore()
+            .collection('Doctors')
+            .onSnapshot(documentSnapshot => {
+                console.log(documentSnapshot.docChanges().length)
+            })
+        firestore()
+            .collection('Doctors')
+            .get()
+            .then(querySnapshot => {
+                querySnapshot.forEach(documentSnapshot => {
+                    const record: {} = documentSnapshot.data();
+                    setDoctorsDispatch({ type: 'DOCTOR_FETCH', payload: record })
                 });
-        });
+            });
     }, [])
 
 
