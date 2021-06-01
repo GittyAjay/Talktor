@@ -13,37 +13,15 @@ import EIcon from 'react-native-vector-icons/Entypo';
 import IIcon from 'react-native-vector-icons/Ionicons';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { scale, moderateScale } from 'react-native-size-matters';
-import { color } from 'react-native-reanimated';
 import Slider from '../components/HomeSlider'
 import { connect, useDispatch, useSelector } from 'react-redux'
 import Doctors from '../components/AvailDoctors'
 import firestore from '@react-native-firebase/firestore';
-function Home(props: { navigation: any, Doctors: any, DoctorsByStatus: any }) {
+function Home(props: { navigation: any, Doctor: any }) {
     const { WIDTH, HEIGHT, FONT_SMALL, BORDER_RADIUS_CIRCULAR, FONT_ELARGE, FONT_MID, FONT_LARGE, BORDER_RADIUS, ICON_SIZE, INLINE_GAP, DEFAUTL_SPACE } = Numericals();
-    const setDoctorsDispatch = useDispatch();
-    const setDoctorsByStatusDispatch = useDispatch();
-    const clearDefault = useDispatch();
-
+    const [docotorByStatus, setDocotorByStatus] = useState([]);
     useEffect(() => {
-        clearDefault({ type: 'CLEAR_DEFAULT' })
-        const query = firestore().collection('Doctors').where('isAvailable', '==', true);
-        query
-            .get()
-            .then(querySnapshot => {
-                querySnapshot.forEach(documentSnapshot => {
-                    const record: {} = documentSnapshot.data();
-                    setDoctorsByStatusDispatch({ type: 'DOCTOR_BY_STATUS_FETCH', payload: record })
-                });
-            })
-        firestore()
-            .collection('Doctors')
-            .get()
-            .then(querySnapshot => {
-                querySnapshot.forEach(documentSnapshot => {
-                    const record: {} = documentSnapshot.data();
-                    setDoctorsDispatch({ type: 'DOCTOR_FETCH', payload: record })
-                });
-            });
+        setDocotorByStatus(props.Doctor.filter((value, id, arr) => value.isAvailable == true))
     }, [])
 
     const getRating = (no: number) => {
@@ -74,13 +52,13 @@ function Home(props: { navigation: any, Doctors: any, DoctorsByStatus: any }) {
                         </View>
                     </View>
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginVertical: DEFAUTL_SPACE }}>
-                        <Slider doctors={props.Doctors} />
+                        <Slider doctors={props.Doctor} />
                     </View>
                     <View style={{ marginVertical: DEFAUTL_SPACE, marginHorizontal: INLINE_GAP }}>
                         <Text style={{ fontFamily: "Museo700-Regular", fontSize: FONT_LARGE }}>Find your doctors</Text>
                     </View>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{ marginHorizontal: INLINE_GAP }}>
-                        <Pressable style={({ pressed }) => [{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 2 * DEFAUTL_SPACE, marginRight: DEFAUTL_SPACE, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, transform: [{ scale: pressed ? 0.96 : 1 }] }]} onPress={() => props.navigation.push('SearchResult', { type: 'Cardiologists' })}>
+                        <Pressable style={({ pressed }) => [{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 2 * DEFAUTL_SPACE, marginRight: DEFAUTL_SPACE, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, transform: [{ scale: pressed ? 0.96 : 1 }] }]} onPress={() => props.navigation.push('SearchResult', { type: 'Cardiologist' })}>
                             <FIcon name="heartbeat" color={Colors.RED} size={ICON_SIZE + 10} />
                             <Text style={{ fontSize: moderateScale(FONT_MID), fontWeight: 'bold', marginHorizontal: DEFAUTL_SPACE / 2 }}>Cardiologists</Text>
                         </Pressable>
@@ -88,7 +66,7 @@ function Home(props: { navigation: any, Doctors: any, DoctorsByStatus: any }) {
                             <F5Icon name="teeth" color={Colors.SECONDARY} size={ICON_SIZE + 10} />
                             <Text style={{ fontSize: moderateScale(FONT_MID), fontWeight: 'bold', marginHorizontal: DEFAUTL_SPACE / 2 }}>Dentist</Text>
                         </Pressable>
-                        <Pressable style={({ pressed }) => [{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 2 * DEFAUTL_SPACE, marginRight: DEFAUTL_SPACE, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, transform: [{ scale: pressed ? 0.96 : 1 }] }]} onPress={() => props.navigation.push('SearchResult', { type: 'Neurologists' })}>
+                        <Pressable style={({ pressed }) => [{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 2 * DEFAUTL_SPACE, marginRight: DEFAUTL_SPACE, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, transform: [{ scale: pressed ? 0.96 : 1 }] }]} onPress={() => props.navigation.push('SearchResult', { type: 'Neurologist' })}>
                             <MIcon name="head" color={Colors.RED} size={ICON_SIZE + 10} />
                             <Text style={{ fontSize: moderateScale(FONT_MID), fontWeight: 'bold', marginHorizontal: DEFAUTL_SPACE / 2 }}>Neurologists</Text>
                         </Pressable>
@@ -96,7 +74,7 @@ function Home(props: { navigation: any, Doctors: any, DoctorsByStatus: any }) {
                             <MATIcon name="psychology" color={Colors.PRIMARY} size={ICON_SIZE + 10} />
                             <Text style={{ fontSize: moderateScale(FONT_MID), fontWeight: 'bold', marginHorizontal: DEFAUTL_SPACE / 2 }}>Psychiatrist</Text>
                         </Pressable>
-                        <Pressable style={({ pressed }) => [{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 2 * DEFAUTL_SPACE, marginRight: DEFAUTL_SPACE, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, transform: [{ scale: pressed ? 0.96 : 1 }] }]} onPress={() => props.navigation.push('SearchResult', { type: 'Pediatricians' })}>
+                        <Pressable style={({ pressed }) => [{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 2 * DEFAUTL_SPACE, marginRight: DEFAUTL_SPACE, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, transform: [{ scale: pressed ? 0.96 : 1 }] }]} onPress={() => props.navigation.push('SearchResult', { type: 'Pediatrician' })}>
                             <MATIcon name="child-care" color={Colors.ORANGE} size={ICON_SIZE + 10} />
                             <Text style={{ fontSize: moderateScale(FONT_MID), fontWeight: 'bold', marginHorizontal: DEFAUTL_SPACE / 2 }}>Pediatricians</Text>
                         </Pressable>
@@ -110,7 +88,7 @@ function Home(props: { navigation: any, Doctors: any, DoctorsByStatus: any }) {
                         <Text style={{ fontFamily: "Museo700-Regular", fontSize: FONT_LARGE }}>Availble Doctors</Text>
                     </View>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{ marginHorizontal: INLINE_GAP }}>
-                        {props.DoctorsByStatus && props.DoctorsByStatus.map((value, id) =>
+                        {docotorByStatus && docotorByStatus.map((value, id) =>
                             <Doctors value={value} id={id} key={id} />
                         )}
                     </ScrollView>
@@ -121,8 +99,7 @@ function Home(props: { navigation: any, Doctors: any, DoctorsByStatus: any }) {
 }
 const mapStatetoProps = (state: any) => {
     return {
-        Doctors: state.project.doctors,
-        DoctorsByStatus: state.project.doctorsByStatus,
+        Doctor: state.project.doctors,
     }
 }
 export default connect(mapStatetoProps)(Home);

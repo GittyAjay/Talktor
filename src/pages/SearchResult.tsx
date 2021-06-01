@@ -12,39 +12,16 @@ import firestore from '@react-native-firebase/firestore';
 import { connect, useDispatch, useSelector } from 'react-redux'
 import Doctors from '../components/AvailDoctors'
 
-const SearchResult = (props: { navigation: any, route: { params: any }, DoctorsByType: any, DoctorsByStatus: any }) => {
+const SearchResult = (props: { navigation: any, route: { params: any }, Doctor: any }) => {
     const { COMMON_BUTTON_HEIGHT, FONT_ELARGE, FONT_SMALL, FONT_MID, FONT_LARGE, BORDER_RADIUS, ICON_SIZE, INLINE_GAP, DEFAUTL_SPACE, TEXT_INPUT_HEIGHT } = Numericals();
     const [type, setType] = useState(props.route.params.type)
-    const setDoctorsByTypeDispatch = useDispatch();
-    const setDoctorsByStatusDispatch = useDispatch();
-    const clearDefault = useDispatch();
+    const [docotorByType, setDocotorByType] = useState([]);
+    const [docotorByStatus, setDocotorByStatus] = useState([]);
 
     useEffect(() => {
-        setType(props.route.params.type);
-        clearDefault({ type: 'CLEAR_DEFAULT' })
-        const query = firestore().collection('Doctors').where('type', '==', type)
-        const multiQuery = query.where('isAvailable', '==', true)
-
-        query
-            .get()
-            .then(querySnapshot => {
-                querySnapshot.forEach(documentSnapshot => {
-                    const record: {} = documentSnapshot.data();
-                    setDoctorsByTypeDispatch({ type: 'DOCTOR_BY_CATEGORIES_FETCH', payload: record })
-                });
-            })
-
-        multiQuery
-            .get()
-            .then(querySnapshot => {
-                querySnapshot.forEach(documentSnapshot => {
-                    const record: {} = documentSnapshot.data();
-                    setDoctorsByStatusDispatch({ type: 'DOCTOR_BY_STATUS_FETCH', payload: record })
-                });
-            })
-        // console.log("Doctor by type", props.DoctorsByType.length);
+        setDocotorByType(props.Doctor.filter((value, id, arr) => value.specialization == props.route.params.type))
+        setDocotorByStatus(props.Doctor.filter((value, id, arr) => value.isAvailable == true))
     }, []);
-
 
     const headerComponnets = () =>
         <View>
@@ -63,7 +40,7 @@ const SearchResult = (props: { navigation: any, route: { params: any }, DoctorsB
                         </TouchableOpacity>
                     </View>
                     <View style={[styles.main]}>
-                        {props.DoctorsByType && props.DoctorsByType.map((value: any, id: any) => {
+                        {docotorByType && docotorByType.map((value: any, id: any) => {
                             return (
                                 <Pressable key={id} style={({ pressed }) => [styles.mainElement, styles.shadow, { height: 100, backgroundColor: Colors.WHITE, borderRadius: BORDER_RADIUS, paddingHorizontal: INLINE_GAP, marginBottom: DEFAUTL_SPACE, transform: [{ scale: pressed ? 0.97 : 1 }] }]} onPress={() => props.navigation.push('DoctorIntro', { item: value })}>
                                     <View style={[styles.imageCard, { borderRadius: BORDER_RADIUS, backgroundColor: Colors.CYAN }]}>
@@ -105,7 +82,7 @@ const SearchResult = (props: { navigation: any, route: { params: any }, DoctorsB
                                 <Text style={{ fontSize: FONT_LARGE }}>Availble Doctors</Text>
                             </View>
                             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                                {props.DoctorsByStatus && props.DoctorsByStatus.map((value, id) =>
+                                {docotorByStatus && docotorByStatus.map((value, id) =>
                                     <Doctors value={value} id={id} key={id} />
                                 )}
                             </ScrollView>
@@ -119,8 +96,7 @@ const SearchResult = (props: { navigation: any, route: { params: any }, DoctorsB
 }
 const mapStatetoProps = (state: any) => {
     return {
-        DoctorsByType: state.project.doctorsByCategory,
-        DoctorsByStatus: state.project.doctorsByStatus,
+        Doctor: state.project.doctors,
     }
 }
 

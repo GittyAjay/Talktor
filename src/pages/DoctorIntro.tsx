@@ -13,7 +13,6 @@ import LinearGradient from 'react-native-linear-gradient'
 const DoctorIntro = (props: { navigation: any, route: { params: { item: {} } } }) => {
     const { COMMON_BUTTON_HEIGHT, FONT_ELARGE, FONT_SMALL, FONT_MID, FONT_LARGE, SMALL_BUTTON_HEIGHT, BUTTON_HEIGHT, BORDER_RADIUS, ICON_SIZE, INLINE_GAP, DEFAUTL_SPACE, TEXT_INPUT_HEIGHT } = Numericals();
     let doctorDetails = props.route.params.item;
-    console.log(doctorDetails);
 
     const headerComponnets = () =>
         <View>
@@ -77,7 +76,7 @@ const DoctorIntro = (props: { navigation: any, route: { params: { item: {} } } }
                             <Text style={[style.fontStyle, { fontSize: FONT_MID, color: Colors.BLACK }]}>{doctorDetails.review < 1000 ? doctorDetails.review : doctorDetails.review / 1000 + "k"}</Text>
                         </View>
                     </View>
-                    <Pressable style={({ pressed }) => [{ paddingVertical: COMMON_BUTTON_HEIGHT, marginVertical: INLINE_GAP, backgroundColor: Colors.PRIMARY, borderRadius: BORDER_RADIUS, justifyContent: 'center', alignItems: 'center', transform: [{ scale: pressed ? 0.95 : 1 }] }]} onPress={() => props.navigation.push('AppointmentReq')}>
+                    <Pressable style={({ pressed }) => [{ paddingVertical: COMMON_BUTTON_HEIGHT, marginVertical: INLINE_GAP, backgroundColor: Colors.PRIMARY, borderRadius: BORDER_RADIUS, justifyContent: 'center', alignItems: 'center', transform: [{ scale: pressed ? 0.95 : 1 }] }]} onPress={() => props.navigation.push('AppointmentReq', { item: doctorDetails })}>
                         <Text style={[style.fontStyle, { fontSize: FONT_MID, color: Colors.WHITE, fontWeight: 'bold' }]}>Book an Appointment</Text>
                     </Pressable>
                 </View>

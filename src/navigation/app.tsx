@@ -139,18 +139,13 @@ function TopNav() {
                 }}
             >
                 <Tab.Screen name="Pediatrician" component={Doctors}
-
                 />
                 <Tab.Screen name="Neurosurgeon" component={Doctors}
-
                 />
                 <Tab.Screen name="Cardiologist" component={Doctors}
-
                 />
                 <Tab.Screen name="Physicologist" component={Doctors}
-
                 />
-
             </Tab.Navigator>
         </>
     );

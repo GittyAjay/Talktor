@@ -13,6 +13,7 @@ import AIcon from 'react-native-vector-icons/AntDesign';
 import { TextInput } from 'react-native-gesture-handler';
 import Header from '../header/header'
 
+
 const Search = (props: { navigation: any }) => {
     const { COMMON_BUTTON_HEIGHT, FONT_ELARGE, FONT_MID, FONT_LARGE, BORDER_RADIUS, ICON_SIZE, INLINE_GAP, DEFAUTL_SPACE, TEXT_INPUT_HEIGHT } = Numericals();
     const [keyboardStatus, setKeyboardStatus] = useState(false);
@@ -57,7 +58,7 @@ const Search = (props: { navigation: any }) => {
                             <MATIcon name="date-range" size={ICON_SIZE} color={Colors.GREY.LIGHT} />
                         </View>
                     </View>
-                    <Pressable style={({ pressed }) => [{ paddingVertical: COMMON_BUTTON_HEIGHT, backgroundColor: Colors.PRIMARY, borderRadius: BORDER_RADIUS, justifyContent: 'center', alignItems: 'center', transform: [{ scale: pressed ? 0.95 : 1 }] }]} onPress={() => props.navigation.push('SearchResult')}>
+                    <Pressable style={({ pressed }) => [{ paddingVertical: COMMON_BUTTON_HEIGHT, backgroundColor: Colors.PRIMARY, borderRadius: BORDER_RADIUS, justifyContent: 'center', alignItems: 'center', transform: [{ scale: pressed ? 0.95 : 1 }] }]} onPress={() => props.navigation.push('SearchResult', { type: 'Cardiologist' })}>
                         <Text style={[styls.fontStyle, { fontSize: FONT_MID, color: Colors.WHITE, fontWeight: 'bold' }]}>Search</Text>
                     </Pressable>
                 </View>

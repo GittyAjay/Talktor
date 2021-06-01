@@ -10,6 +10,7 @@ import AIcon from 'react-native-vector-icons/AntDesign';
 export default function AvailDoctor({ value, id }) {
     const { WIDTH, HEIGHT, FONT_SMALL, BORDER_RADIUS_CIRCULAR, FONT_ELARGE, FONT_MID, FONT_LARGE, BORDER_RADIUS, ICON_SIZE, INLINE_GAP, DEFAUTL_SPACE } = Numericals();
     const navigation = useNavigation();
+
     const getRating = (no: number) => {
         let content = [];
         for (let i = 0; i < no; i++) {

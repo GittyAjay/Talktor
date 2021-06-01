@@ -1,7 +1,6 @@
 import { Colors } from '../constants/color'
 import React, { useEffect, useRef, useState } from 'react';
 import StatusBar from '../styles/statusBar'
-import LottieView from 'lottie-react-native'
 import { Numericals } from '../constants/numerical';
 import AIcon from 'react-native-vector-icons/AntDesign';
 import { View, Text, StyleSheet, Pressable, Button, Animated, Keyboard, Alert } from 'react-native'
@@ -10,6 +9,7 @@ import Carousel from 'react-native-snap-carousel';
 import Slider from '../components/Slider';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import auth from '@react-native-firebase/auth';
+import firebase from '@react-native-firebase/app';
 import Spinner from 'react-native-loading-spinner-overlay';
 export default function Dashboard(props: { navigation: { push: Function, navigate: Function } }) {
 
@@ -57,7 +57,6 @@ export default function Dashboard(props: { navigation: { push: Function, navigat
 
     async function confirmCode() {
         setSpinner(true);
-        console.log("code is", code);
         try {
             await confirm.confirm(code);
             setSpinner(false);
@@ -72,6 +71,17 @@ export default function Dashboard(props: { navigation: { push: Function, navigat
             toValue: HEIGHT - LOGIN_VIEW_HEIGHT,
             useNativeDriver: true
         }).start();
+
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                console.log("user");
+            }
+            else {
+                // reset state if you need to  
+                console.log("reset user");
+
+            }
+        })
     }, [0])
 
     function backAnim() {
@@ -83,10 +93,7 @@ export default function Dashboard(props: { navigation: { push: Function, navigat
             useNativeDriver: true
         }).start();
     }
-    function submit() {
-        console.log("submit button is clicked");
 
-    }
     return (
         <View style={styles.container}>
             <StatusBar color={Colors.PRIMARY} />
@@ -143,11 +150,19 @@ export default function Dashboard(props: { navigation: { push: Function, navigat
                                             setCode(text);
                                             otp2.current.focus();
                                         }
+                                        if (text.length < 1) {
+                                            setCode(txt => txt.replace(txt.charAt(0), ''));
+                                            otp1.current.focus();
+                                        }
                                     }} onBlur={() => setActive(false)} /></Pressable>
                                     <Pressable style={({ pressed }) => [{ borderRadius: moderateScale(DEFAUTL_SPACE), borderColor: isActive ? Colors.BLACK : Colors.GREY.SIMPLE, borderWidth: BORDER_WIDTH, marginHorizontal: DEFAUTL_SPACE, justifyContent: 'center', width: scale(45), height: scale(45) }, , styles.shape]}><TextInput ref={otp2} style={{ fontSize: scale(FONT_LARGE), color: Colors.BLACK }} keyboardType="phone-pad" maxLength={1} onChangeText={text => {
                                         if (text.length == 1) {
                                             setCode(txt => txt.concat(text));
                                             otp3.current.focus();
+                                        }
+                                        if (text.length < 1) {
+                                            setCode(txt => txt.replace(txt.charAt(1), ''));
+                                            otp2.current.focus();
                                         }
                                     }} /></Pressable>
                                     <Pressable style={({ pressed }) => [{ borderRadius: moderateScale(DEFAUTL_SPACE), borderColor: isActive ? Colors.BLACK : Colors.GREY.SIMPLE, borderWidth: BORDER_WIDTH, width: scale(45), height: scale(45) }, styles.shape]}><TextInput ref={otp3} style={{ fontSize: scale(FONT_LARGE), color: Colors.BLACK }} maxLength={1} keyboardType="phone-pad" onChangeText={text => {
@@ -155,11 +170,19 @@ export default function Dashboard(props: { navigation: { push: Function, navigat
                                             setCode(txt => txt.concat(text));
                                             otp4.current.focus();
                                         }
+                                        if (text.length < 1) {
+                                            setCode(txt => txt.replace(txt.charAt(2), ''));
+                                            otp3.current.focus();
+                                        }
                                     }} /></Pressable>
                                     <Pressable style={({ pressed }) => [{ borderRadius: moderateScale(DEFAUTL_SPACE), borderColor: isActive ? Colors.BLACK : Colors.GREY.SIMPLE, borderWidth: BORDER_WIDTH, marginHorizontal: DEFAUTL_SPACE, justifyContent: 'center', width: scale(45), height: scale(45) }, , styles.shape]}><TextInput ref={otp4} style={{ fontSize: scale(FONT_LARGE), color: Colors.BLACK }} keyboardType="phone-pad" maxLength={1} onChangeText={text => {
                                         if (text.length == 1) {
                                             otp5.current.focus();
                                             setCode(txt => txt.concat(text));
+                                        }
+                                        if (text.length < 1) {
+                                            setCode(txt => txt.replace(txt.charAt(3), ''));
+                                            otp4.current.focus();
                                         }
                                     }} /></Pressable>
                                     <Pressable style={({ pressed }) => [{ borderRadius: moderateScale(DEFAUTL_SPACE), borderColor: isActive ? Colors.BLACK : Colors.GREY.SIMPLE, borderWidth: BORDER_WIDTH, justifyContent: 'center', width: scale(45), height: scale(45) }, , styles.shape]}><TextInput ref={otp5} style={{ fontSize: scale(FONT_LARGE), color: Colors.BLACK }} maxLength={1} keyboardType="phone-pad" onChangeText={text => {
@@ -167,11 +190,19 @@ export default function Dashboard(props: { navigation: { push: Function, navigat
                                             otp6.current.focus();
                                             setCode(txt => txt.concat(text));
                                         }
+                                        if (text.length < 1) {
+                                            setCode(txt => txt.replace(txt.charAt(4), ''));
+                                            otp5.current.focus();
+                                        }
                                     }} /></Pressable>
                                     <Pressable style={({ pressed }) => [{ borderRadius: moderateScale(DEFAUTL_SPACE), borderColor: isActive ? Colors.BLACK : Colors.GREY.SIMPLE, borderWidth: BORDER_WIDTH, marginHorizontal: DEFAUTL_SPACE, justifyContent: 'center', width: scale(45), height: scale(45) }, , styles.shape]}><TextInput ref={otp6} style={{ fontSize: scale(FONT_LARGE), color: Colors.BLACK }} maxLength={1} keyboardType="phone-pad" onChangeText={text => {
                                         if (text.length == 1) {
                                             otp6.current.blur();
                                             setCode(txt => txt.concat(text));
+                                        }
+                                        if (text.length < 1) {
+                                            setCode(txt => txt.replace(txt.charAt(5), ''));
+                                            otp5.current.focus();
                                         }
                                     }} /></Pressable>
                                 </View>
