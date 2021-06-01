@@ -17,20 +17,25 @@ import Slider from '../components/HomeSlider'
 import { connect, useDispatch, useSelector } from 'react-redux'
 import Doctors from '../components/AvailDoctors'
 import firestore from '@react-native-firebase/firestore';
-function Home(props: { navigation: any, Doctor: any }) {
+function Home(props: { navigation: any, Doctors: any, users: any }) {
     const { WIDTH, HEIGHT, FONT_SMALL, BORDER_RADIUS_CIRCULAR, FONT_ELARGE, FONT_MID, FONT_LARGE, BORDER_RADIUS, ICON_SIZE, INLINE_GAP, DEFAUTL_SPACE } = Numericals();
-    const [docotorByStatus, setDocotorByStatus] = useState([]);
+    const setDoctorsDispatch = useDispatch();
+
     useEffect(() => {
-        setDocotorByStatus(props.Doctor.filter((value, id, arr) => value.isAvailable == true))
+        props.navigation.addListener('focus', () => {
+            firestore()
+                .collection('Doctors')
+                .get()
+                .then(querySnapshot => {
+                    querySnapshot.forEach(documentSnapshot => {
+                        const record: {} = documentSnapshot.data();
+                        setDoctorsDispatch({ type: 'DOCTOR_FETCH', payload: record })
+                    });
+                });
+        });
     }, [])
 
-    const getRating = (no: number) => {
-        let content = [];
-        for (let i = 0; i < no; i++) {
-            content.push(<AIcon name="star" size={ICON_SIZE - DEFAUTL_SPACE} color={Colors.STAR_COLOR} key={i} />);
-        }
-        return content;
-    };
+
 
     return (
         <SafeAreaView >
@@ -52,7 +57,7 @@ function Home(props: { navigation: any, Doctor: any }) {
                         </View>
                     </View>
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginVertical: DEFAUTL_SPACE }}>
-                        <Slider doctors={props.Doctor} />
+                        <Slider doctors={props.Doctors} />
                     </View>
                     <View style={{ marginVertical: DEFAUTL_SPACE, marginHorizontal: INLINE_GAP }}>
                         <Text style={{ fontFamily: "Museo700-Regular", fontSize: FONT_LARGE }}>Find your doctors</Text>
@@ -88,8 +93,8 @@ function Home(props: { navigation: any, Doctor: any }) {
                         <Text style={{ fontFamily: "Museo700-Regular", fontSize: FONT_LARGE }}>Availble Doctors</Text>
                     </View>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{ marginHorizontal: INLINE_GAP }}>
-                        {docotorByStatus && docotorByStatus.map((value, id) =>
-                            <Doctors value={value} id={id} key={id} />
+                        {props.Doctors && props.Doctors.map((value, id) =>
+                            value.isAvailable == true ? <Doctors value={value} id={id} key={id} /> : null
                         )}
                     </ScrollView>
                 </View>
@@ -99,7 +104,8 @@ function Home(props: { navigation: any, Doctor: any }) {
 }
 const mapStatetoProps = (state: any) => {
     return {
-        Doctor: state.project.doctors,
+        Doctors: state.project.doctors,
+        users: state.project.users,
     }
 }
 export default connect(mapStatetoProps)(Home);

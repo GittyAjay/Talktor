@@ -18,7 +18,7 @@ export default function header(param: { template: Function }) {
             backgroundColor: Colors.WHITE
         }]}>
             <View style={{ flexDirection: 'row', flex: 0.6, justifyContent: 'space-between', backgroundColor: Colors.WHITE, alignItems: 'center' }}>
-                <AIcon name="arrowleft" size={ICON_SIZE} onPress={() => navigation.goBack()} />
+                <AIcon name="arrowleft" size={ICON_SIZE} onPress={() => navigation.navigate('Home')} />
                 <View style={{ flexDirection: 'column' }}>
                     <param.template />
                 </View>

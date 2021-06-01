@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React from 'react'
 import { Animated, Easing, View, Text, Image, StyleSheet, Button } from 'react-native'
 import { Colors } from '../constants/color';
 import { Numericals } from '../constants/numerical';
@@ -7,6 +7,7 @@ import { scale, moderateScale } from 'react-native-size-matters';
 
 export default function Splash(props: { navigation: { push: Function } }) {
     const { FONT_MID, FONT_LARGE, FONT_ELARGE, FONT_SMALL } = Numericals();
+
     setTimeout(() => {
         props.navigation.push('Dashboard');
     }, 1000);
